@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Cup 2026 Prediction Contest - Leaderboard</title>
+    <title>World Cup 2026 Prediction Contest - Durham Football Lodge</title>
     <style>
         * {
             margin: 0;
@@ -13,13 +13,13 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -29,12 +29,42 @@
             padding: 30px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
         }
 
         h1 {
             color: #2d3748;
             margin-bottom: 10px;
             font-size: 2em;
+        }
+
+        .subtitle {
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .entry-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e5799 0%, #2989d8 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 15px 0;
+            transition: transform 0.2s;
+        }
+
+        .entry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 87, 153, 0.3);
         }
 
         .stats {
@@ -48,7 +78,7 @@
             background: #f7fafc;
             padding: 15px;
             border-radius: 8px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #2989d8;
         }
 
         .stat-label {
@@ -61,6 +91,77 @@
             color: #2d3748;
             font-size: 1.5em;
             font-weight: 700;
+        }
+
+        .rules-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .rules-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2989d8;
+        }
+
+        .rules-section h3 {
+            color: #2d3748;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .rules-section p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .rules-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .rules-section li {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .payment-details {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+
+        .payment-details strong {
+            color: #2d3748;
+        }
+
+        .prize-breakdown {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .prize-breakdown ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .prize-breakdown li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .prize-breakdown li:last-child {
+            border-bottom: none;
         }
 
         .leaderboard-table {
@@ -76,7 +177,7 @@
         }
 
         thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e5799 0%, #2989d8 100%);
             color: white;
         }
 
@@ -115,7 +216,7 @@
 
         .rank {
             font-weight: 700;
-            color: #667eea;
+            color: #2989d8;
             font-size: 1.1em;
         }
 
@@ -130,7 +231,7 @@
 
         .points {
             font-weight: 700;
-            color: #667eea;
+            color: #2989d8;
             font-size: 1.1em;
         }
 
@@ -180,9 +281,42 @@
             margin-top: 15px;
         }
 
+        .toggle-rules {
+            background: none;
+            border: 2px solid #2989d8;
+            color: #2989d8;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 15px auto;
+            display: block;
+            transition: all 0.2s;
+        }
+
+        .toggle-rules:hover {
+            background: #2989d8;
+            color: white;
+        }
+
+        .rules-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .rules-content.expanded {
+            max-height: 2000px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.5em;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
             }
 
             th, td {
@@ -197,14 +331,24 @@
             .hide-mobile {
                 display: none;
             }
+
+            .entry-button {
+                font-size: 1em;
+                padding: 12px 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <img src="Durham_Football_Lodge_Logo.JPG" alt="Durham Football Lodge" class="logo">
             <h1>🏆 World Cup 2026 Prediction Contest</h1>
-            <p style="color: #718096; margin-top: 10px;">Durham Football Lodge Charity Competition</p>
+            <p class="subtitle">Durham Football Lodge Charity Competition</p>
+            
+            <a href="https://forms.gle/oSWKEe5dahrLgCyg6" class="entry-button" target="_blank">
+                📝 Enter the Competition
+            </a>
             
             <div class="stats">
                 <div class="stat-card">
@@ -216,13 +360,77 @@
                     <div class="stat-value" id="matches-completed">-</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Prize Pool</div>
-                    <div class="stat-value" id="prize-pool">£-</div>
+                    <div class="stat-label">1st Place Prize</div>
+                    <div class="stat-value" id="first-prize">£-</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">To Charity</div>
+                    <div class="stat-label">2nd Place Prize</div>
+                    <div class="stat-value" id="second-prize">£-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Charity Pot</div>
                     <div class="stat-value" id="charity-amount">£-</div>
                 </div>
+            </div>
+        </div>
+
+        <div class="rules-section">
+            <h2>Competition Rules & Information</h2>
+            
+            <button class="toggle-rules" onclick="toggleRules()">Show Full Rules</button>
+            
+            <div class="rules-content" id="rules-content">
+                <h3>💷 Entry Fee & Payment</h3>
+                <p><strong>Entry Fee: £10</strong></p>
+                <div class="payment-details">
+                    <strong>Account Name:</strong> Ivan Lowther<br>
+                    <strong>Sort code:</strong> 04-00-03<br>
+                    <strong>Account no:</strong> 36801274<br>
+                    <strong>REF:</strong> WC [your name]
+                </div>
+
+                <h3>🏆 Prize Pot Distribution</h3>
+                <div class="prize-breakdown">
+                    <ul>
+                        <li><strong>1st Place:</strong> 35% of total pot</li>
+                        <li><strong>2nd Place:</strong> 15% of total pot</li>
+                        <li><strong>Lodge Charity Pot:</strong> 50% of total pot</li>
+                    </ul>
+                </div>
+
+                <h3>📋 How to Enter</h3>
+                <ol>
+                    <li>Predict the score for each of the 72 Group game matches</li>
+                    <li>Type in score with '-' between the two scores without any spaces (e.g. 2-1)</li>
+                    <li>Complete the entry form: <a href="https://forms.gle/oSWKEe5dahrLgCyg6" target="_blank">https://forms.gle/oSWKEe5dahrLgCyg6</a></li>
+                    <li>Transfer £10 entry fee to the account above</li>
+                </ol>
+
+                <h3>📊 Points Awarded</h3>
+                <p>1 point will be awarded for each team's goal total correctly predicted, and 1 point for predicting the correct outcome of the game (win, loss or draw).</p>
+                <p><strong>Maximum 3 points for a fully correct prediction.</strong></p>
+                
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li>Actual result: 3-1, Prediction: 3-1 = <strong>3 points</strong> (home ✓, away ✓, result ✓)</li>
+                    <li>Actual result: 3-1, Prediction: 3-0 = <strong>2 points</strong> (home ✓, result ✓)</li>
+                    <li>Actual result: 3-1, Prediction: 2-1 = <strong>2 points</strong> (away ✓, result ✓)</li>
+                    <li>Actual result: 3-1, Prediction: 2-0 = <strong>1 point</strong> (result ✓)</li>
+                </ul>
+
+                <h3>🎖️ Tournament Winner Bonus</h3>
+                <ul>
+                    <li>If the team predicted to win the tournament is the <strong>losing finalist:</strong> 5 bonus points</li>
+                    <li>If that team <strong>wins the tournament:</strong> 12 bonus points</li>
+                </ul>
+
+                <h3>🔗 Tie-Breakers</h3>
+                <p>When more than one person is level on points, places in the league table will be determined as follows in the order shown:</p>
+                <ol>
+                    <li>The person having gained the greatest number of maximum 3pt games in the Group Stage will be placed highest</li>
+                    <li>The person having gained the greatest number of 2pt games in the Group Stage will be placed highest</li>
+                    <li>The person having gained the greatest number of 1pt games in the Group Stage will be placed highest</li>
+                </ol>
             </div>
         </div>
 
@@ -251,8 +459,22 @@
 
     <script>
         // Configuration
-        const JSON_URL = 'leaderboard-data.json';  // Path to your JSON file
-        const ENTRY_FEE = 10;  // Entry fee in pounds
+        const JSON_URL = 'leaderboard-data.json';
+        const ENTRY_FEE = 10;
+
+        // Toggle rules visibility
+        function toggleRules() {
+            const content = document.getElementById('rules-content');
+            const button = document.querySelector('.toggle-rules');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                button.textContent = 'Show Full Rules';
+            } else {
+                content.classList.add('expanded');
+                button.textContent = 'Hide Rules';
+            }
+        }
 
         // Fetch and display leaderboard
         async function loadLeaderboard() {
@@ -271,10 +493,12 @@
                     `${data.matches_completed}/${data.total_matches}`;
                 
                 const totalPot = data.total_entries * ENTRY_FEE;
-                const charityAmount = Math.floor(totalPot * 0.25);
-                const winnerAmount = totalPot - charityAmount;
+                const firstPrize = Math.floor(totalPot * 0.35);
+                const secondPrize = Math.floor(totalPot * 0.15);
+                const charityAmount = totalPot - firstPrize - secondPrize;
                 
-                document.getElementById('prize-pool').textContent = `£${winnerAmount}`;
+                document.getElementById('first-prize').textContent = `£${firstPrize}`;
+                document.getElementById('second-prize').textContent = `£${secondPrize}`;
                 document.getElementById('charity-amount').textContent = `£${charityAmount}`;
                 
                 // Build leaderboard table
