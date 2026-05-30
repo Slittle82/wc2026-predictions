@@ -15,12 +15,26 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+        }
+
+        .banner {
+            width: 100%;
+            background-image: url('banner.PNG');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .header {
@@ -30,12 +44,6 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
         }
 
         h1 {
@@ -65,6 +73,15 @@
         .entry-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(30, 87, 153, 0.3);
+        }
+
+        .payment-info-box {
+            margin: 20px 0;
+        }
+
+        .payment-info-box h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
         }
 
         .stats {
@@ -137,6 +154,14 @@
             border-radius: 8px;
             margin: 15px 0;
             font-family: monospace;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .payment-details div {
+            line-height: 1.8;
         }
 
         .payment-details strong {
@@ -169,6 +194,7 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         table {
@@ -244,9 +270,10 @@
             margin: 0 2px;
         }
 
-        .badge-3pt { background: #d1fae5; color: #065f46; }
-        .badge-2pt { background: #dbeafe; color: #1e40af; }
-        .badge-1pt { background: #fef3c7; color: #92400e; }
+        .badge-6pt { background: #dcfce7; color: #166534; }
+        .badge-4pt { background: #dbeafe; color: #1e40af; }
+        .badge-3pt { background: #fef3c7; color: #92400e; }
+        .badge-1pt { background: #fecdd3; color: #9f1239; }
 
         .payment-status {
             display: inline-block;
@@ -279,6 +306,7 @@
             color: #718096;
             font-size: 0.85em;
             margin-top: 15px;
+            margin-bottom: 20px;
         }
 
         .toggle-rules {
@@ -306,17 +334,17 @@
         }
 
         .rules-content.expanded {
-            max-height: 2000px;
+            max-height: 3000px;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5em;
+            .banner {
+                height: 120px;
+                margin-bottom: 15px;
             }
 
-            .logo {
-                width: 80px;
-                height: 80px;
+            h1 {
+                font-size: 1.5em;
             }
 
             th, td {
@@ -336,20 +364,25 @@
                 font-size: 1em;
                 padding: 12px 24px;
             }
+
+            .container {
+                padding: 0 15px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="banner"></div>
+
     <div class="container">
         <div class="header">
-            <img src="Durham_Football_Lodge_Logo.JPG" alt="Durham Football Lodge" class="logo">
-            <h1>🏆 World Cup 2026 Prediction Contest</h1>
+            <h1>World Cup 2026 Prediction Contest</h1>
             <p class="subtitle">Durham Football Lodge Charity Competition</p>
             
             <div class="payment-info-box">
                 <h3 style="color: #2d3748; margin-bottom: 15px;">💷 Entry Fee: £10</h3>
-                <div style="background: #edf2f7; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;">
-                    <div style="font-family: monospace; line-height: 1.8;">
+                <div class="payment-details">
+                    <div>
                         <strong>Account Name:</strong> Ivan Lowther<br>
                         <strong>Sort code:</strong> 04-00-03<br>
                         <strong>Account no:</strong> 36801274<br>
@@ -395,10 +428,12 @@
                 <h3>💷 Entry Fee & Payment</h3>
                 <p><strong>Entry Fee: £10</strong></p>
                 <div class="payment-details">
-                    <strong>Account Name:</strong> Ivan Lowther<br>
-                    <strong>Sort code:</strong> 04-00-03<br>
-                    <strong>Account no:</strong> 36801274<br>
-                    <strong>REF:</strong> WC [your name]
+                    <div>
+                        <strong>Account Name:</strong> Ivan Lowther<br>
+                        <strong>Sort code:</strong> 04-00-03<br>
+                        <strong>Account no:</strong> 36801274<br>
+                        <strong>REF:</strong> WC [your name]
+                    </div>
                 </div>
 
                 <h3>🏆 Prize Pot Distribution</h3>
@@ -419,15 +454,23 @@
                 </ol>
 
                 <h3>📊 Points Awarded</h3>
-                <p>1 point will be awarded for each team's goal total correctly predicted, and 1 point for predicting the correct outcome of the game (win, loss or draw).</p>
-                <p><strong>Maximum 3 points for a fully correct prediction.</strong></p>
-                
-                <p><strong>Examples:</strong></p>
+                <p><strong>Scoring for each match:</strong></p>
                 <ul>
-                    <li>Actual result: 3-1, Prediction: 3-1 = <strong>3 points</strong> (home ✓, away ✓, result ✓)</li>
-                    <li>Actual result: 3-1, Prediction: 3-0 = <strong>2 points</strong> (home ✓, result ✓)</li>
-                    <li>Actual result: 3-1, Prediction: 2-1 = <strong>2 points</strong> (away ✓, result ✓)</li>
-                    <li>Actual result: 3-1, Prediction: 2-0 = <strong>1 point</strong> (result ✓)</li>
+                    <li><strong>1 point</strong> for each team's goal total correctly predicted</li>
+                    <li><strong>3 points</strong> for predicting the correct result (win, loss or draw)</li>
+                    <li><strong>4 points</strong> for correct result + one exact team score</li>
+                    <li><strong>6 points</strong> for a perfect score prediction (both scores + result correct)</li>
+                </ul>
+                
+                <p><strong>Examples (Actual result: 3-1):</strong></p>
+                <ul>
+                    <li>Prediction: 3-1 = <strong>6 points</strong> (perfect prediction)</li>
+                    <li>Prediction: 3-0 = <strong>4 points</strong> (home score ✓ + correct result)</li>
+                    <li>Prediction: 2-1 = <strong>4 points</strong> (away score ✓ + correct result)</li>
+                    <li>Prediction: 1-0 = <strong>3 points</strong> (correct result only)</li>
+                    <li>Prediction: 0-1 = <strong>1 point</strong> (away score ✓)</li>
+                    <li>Prediction: 3-2 = <strong>1 point</strong> (home score ✓)</li>
+                    <li>Prediction: 1-3 = <strong>0 points</strong> (all wrong)</li>
                 </ul>
 
                 <h3>🎖️ Tournament Winner Bonus</h3>
@@ -439,9 +482,8 @@
                 <h3>🔗 Tie-Breakers</h3>
                 <p>When more than one person is level on points, places in the league table will be determined as follows in the order shown:</p>
                 <ol>
-                    <li>The person having gained the greatest number of maximum 3pt games in the Group Stage will be placed highest</li>
-                    <li>The person having gained the greatest number of 2pt games in the Group Stage will be placed highest</li>
-                    <li>The person having gained the greatest number of 1pt games in the Group Stage will be placed highest</li>
+                    <li>The person having gained the greatest number of perfect predictions (6pt games) will be placed highest</li>
+                    <li>The person having gained the greatest number of correct results (3pt games) will be placed highest</li>
                 </ol>
             </div>
         </div>
@@ -505,9 +547,9 @@
                     `${data.matches_completed}/${data.total_matches}`;
                 
                 const totalPot = data.total_entries * ENTRY_FEE;
-                const firstPrize = Math.floor(totalPot * 0.35);
-                const secondPrize = Math.floor(totalPot * 0.15);
-                const charityAmount = totalPot - firstPrize - secondPrize;
+                const firstPrize = (totalPot * 0.35).toFixed(2);
+                const secondPrize = (totalPot * 0.15).toFixed(2);
+                const charityAmount = (totalPot * 0.50).toFixed(2);
                 
                 document.getElementById('first-prize').textContent = `£${firstPrize}`;
                 document.getElementById('second-prize').textContent = `£${secondPrize}`;
@@ -538,8 +580,9 @@
                     
                     // Performance badges
                     const badges = `
+                        <span class="badge badge-6pt">${entry.games_6pt}×6pt</span>
+                        <span class="badge badge-4pt">${entry.games_4pt}×4pt</span>
                         <span class="badge badge-3pt">${entry.games_3pt}×3pt</span>
-                        <span class="badge badge-2pt">${entry.games_2pt}×2pt</span>
                         <span class="badge badge-1pt">${entry.games_1pt}×1pt</span>
                     `;
                     const performanceCell = `<td class="center">${badges}</td>`;
