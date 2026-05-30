@@ -500,7 +500,7 @@
                         <th class="center">Total</th>
                         <th class="center hide-mobile">Match Pts</th>
                         <th class="center hide-mobile">Winner</th>
-                        <th class="center">Performance</th>
+                        <th class="center">Perfect Predictions</th>
                         <th class="center hide-mobile">Paid</th>
                     </tr>
                 </thead>
@@ -579,12 +579,9 @@
                     // Winner points (hide on mobile)
                     const winnerPointsCell = `<td class="center hide-mobile">${entry.winner_points}</td>`;
                     
-                    // Performance badges
-                    const badges = `
-                        <span class="badge badge-6pt">${entry.games_6pt}×6pt</span>
-                        <span class="badge badge-3pt">${entry.games_3pt}×3pt</span>
-                    `;
-                    const performanceCell = `<td class="center">${badges}</td>`;
+                    // Performance: Show count of perfect predictions
+                    const perfectCount = entry.games_6pt || 0;
+                    const performanceCell = `<td class="center"><strong>${perfectCount} Perfect</strong></td>`;
                     
                     // Payment status (hide on mobile)
                     const paymentStatus = entry.payment && entry.payment.toLowerCase() !== 'no' && entry.payment.trim() !== '';
