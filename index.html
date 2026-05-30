@@ -497,11 +497,10 @@
                     <tr>
                         <th>Rank</th>
                         <th>Name</th>
-                        <th class="center">Total</th>
-                        <th class="center hide-mobile">Match Pts</th>
-                        <th class="center hide-mobile">Winner</th>
-                        <th class="center">Perfect Predictions</th>
-                        <th class="center hide-mobile">Paid</th>
+                        <th class="center">Total Points</th>
+                        <th class="center">Match Points</th>
+                        <th class="center">Winner/Runner Up</th>
+                        <th class="center">Perfect Scores</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboard-body">
@@ -570,26 +569,20 @@
                     // Name
                     const nameCell = `<td class="name">${entry.name}</td>`;
                     
-                    // Total points
-                    const pointsCell = `<td class="center points">${entry.total_points}</td>`;
+                    // Total Points (Match Points + Winner/Runner Up Points)
+                    const totalPointsCell = `<td class="center points">${entry.total_points || 0}</td>`;
                     
-                    // Match points (hide on mobile)
-                    const matchPointsCell = `<td class="center hide-mobile">${entry.match_points}</td>`;
+                    // Match Points
+                    const matchPointsCell = `<td class="center">${entry.match_points || 0}</td>`;
                     
-                    // Winner points (hide on mobile)
-                    const winnerPointsCell = `<td class="center hide-mobile">${entry.winner_points}</td>`;
+                    // Winner/Runner Up Points
+                    const winnerPointsCell = `<td class="center">${entry.winner_points || 0}</td>`;
                     
-                    // Performance: Show count of perfect predictions
-                    const perfectCount = entry.games_6pt || 0;
-                    const performanceCell = `<td class="center"><strong>${perfectCount} Perfect</strong></td>`;
+                    // Perfect Scores (6pt games)
+                    const perfectScoresCell = `<td class="center"><strong>${entry.games_6pt || 0}</strong></td>`;
                     
-                    // Payment status (hide on mobile)
-                    const paymentStatus = entry.payment && entry.payment.toLowerCase() !== 'no' && entry.payment.trim() !== '';
-                    const paymentClass = paymentStatus ? 'payment-yes' : 'payment-no';
-                    const paymentCell = `<td class="center hide-mobile"><span class="payment-status ${paymentClass}"></span></td>`;
-                    
-                    row.innerHTML = rankCell + nameCell + pointsCell + matchPointsCell + 
-                                  winnerPointsCell + performanceCell + paymentCell;
+                    row.innerHTML = rankCell + nameCell + totalPointsCell + matchPointsCell + 
+                                  winnerPointsCell + perfectScoresCell;
                     
                     tbody.appendChild(row);
                 });
