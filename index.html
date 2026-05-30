@@ -20,15 +20,18 @@
 
         .banner {
             width: 100%;
-            background-image: url('banner.PNG');
+            background-image: url('0EBC9D4E-203C-4366-A015-871CD5533FF6.PNG');
             background-size: cover;
-            background-position: center;
-            height: 200px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: auto;
+            aspect-ratio: 16 / 3;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-height: 150px;
         }
 
         .container {
@@ -271,9 +274,7 @@
         }
 
         .badge-6pt { background: #dcfce7; color: #166534; }
-        .badge-4pt { background: #dbeafe; color: #1e40af; }
         .badge-3pt { background: #fef3c7; color: #92400e; }
-        .badge-1pt { background: #fecdd3; color: #9f1239; }
 
         .payment-status {
             display: inline-block;
@@ -581,9 +582,7 @@
                     // Performance badges
                     const badges = `
                         <span class="badge badge-6pt">${entry.games_6pt}×6pt</span>
-                        <span class="badge badge-4pt">${entry.games_4pt}×4pt</span>
                         <span class="badge badge-3pt">${entry.games_3pt}×3pt</span>
-                        <span class="badge badge-1pt">${entry.games_1pt}×1pt</span>
                     `;
                     const performanceCell = `<td class="center">${badges}</td>`;
                     
