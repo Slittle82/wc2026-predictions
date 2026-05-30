@@ -44,8 +44,21 @@ def calculate_match_points(prediction: str, actual: str) -> Tuple[int, str]:
     """
     Calculate points for a single match prediction.
     
+    Scoring system:
+    - 1pt for each correct team score (home or away, max 2pts from scores)
+    - 3pts for correct result (win/draw/loss)
+    - Total can be: 0, 1, 2, 3, 4, 5, or 6 points
+    
+    Examples:
+    - Actual 3-1, Predict 3-1: 1+1+3 = 6pts (perfect)
+    - Actual 3-1, Predict 3-0: 1+3 = 4pts (home score + result)
+    - Actual 3-1, Predict 2-1: 1+3 = 4pts (away score + result)
+    - Actual 3-1, Predict 1-0: 3pts (result only)
+    - Actual 3-1, Predict 3-2: 1pt (home score only, wrong result)
+    - Actual 3-1, Predict 0-2: 0pts (nothing correct)
+    
     Returns:
-        (points, category) where category is '3pt', '2pt', '1pt', or '0pt'
+        (points, category) where category is '6pt', '5pt', '4pt', '3pt', '2pt', '1pt', or '0pt'
     """
     pred_score = parse_score(prediction)
     actual_score = parse_score(actual)
@@ -57,32 +70,40 @@ def calculate_match_points(prediction: str, actual: str) -> Tuple[int, str]:
     pred_home, pred_away = pred_score
     actual_home, actual_away = actual_score
     
-    # Check for exact match (3 points)
-    if pred_home == actual_home and pred_away == actual_away:
-        return (3, '3pt')
-    
-    # Calculate individual points
+    # Count correct elements
     points = 0
     
-    # Home score correct
+    # 1pt for correct home score
     if pred_home == actual_home:
         points += 1
     
-    # Away score correct
+    # 1pt for correct away score
     if pred_away == actual_away:
         points += 1
     
-    # Result correct
+    # 3pts for correct result
     if get_result(pred_home, pred_away) == get_result(actual_home, actual_away):
-        points += 1
+        points += 3
     
-    # Determine category
-    if points == 2:
-        category = '2pt'
+    # Bonus: 1pt if both scores AND result are all correct (perfect prediction gets 6pts)
+    if pred_home == actual_home and pred_away == actual_away and get_result(pred_home, pred_away) == get_result(actual_home, actual_away):
+        points += 1  # Bonus to make perfect = 6pts (1+1+3+1)
+    
+    # Determine category for display
+    if points == 6:
+        category = '6pt'  # Both scores + result
+    elif points == 5:
+        category = '5pt'  # Both scores + result
+    elif points == 4:
+        category = '4pt'  # One score + result (1+3)
+    elif points == 3:
+        category = '3pt'  # Result only
+    elif points == 2:
+        category = '2pt'  # Both scores correct but wrong result
     elif points == 1:
-        category = '1pt'
+        category = '1pt'  # One score correct (regardless of result)
     else:
-        category = '0pt'
+        category = '0pt'  # Nothing correct
     
     return (points, category)
 
@@ -172,9 +193,8 @@ def calculate_leaderboard(predictions_csv_url: str, results: Dict[str, str],
         
         # Initialize counters
         total_points = 0
+        games_6pt = 0
         games_3pt = 0
-        games_2pt = 0
-        games_1pt = 0
         winner_points = 0
         
         # Calculate match points
@@ -185,12 +205,11 @@ def calculate_leaderboard(predictions_csv_url: str, results: Dict[str, str],
             points, category = calculate_match_points(prediction, actual)
             total_points += points
             
-            if category == '3pt':
+            # Track for tie-breakers: 6pt games (perfect) and 3pt games (result only)
+            if points == 6:
+                games_6pt += 1
+            elif points == 3:
                 games_3pt += 1
-            elif category == '2pt':
-                games_2pt += 1
-            elif category == '1pt':
-                games_1pt += 1
         
         # Calculate winner/runner-up points
         predicted_winner = ''
@@ -212,19 +231,17 @@ def calculate_leaderboard(predictions_csv_url: str, results: Dict[str, str],
             'total_points': total_points,
             'match_points': total_points - winner_points,
             'winner_points': winner_points,
+            'games_6pt': games_6pt,
             'games_3pt': games_3pt,
-            'games_2pt': games_2pt,
-            'games_1pt': games_1pt,
             'predicted_winner': predicted_winner
         })
     
     # Sort by tie-breaker rules:
     # 1. Total points (highest first)
-    # 2. Most 3pt games
-    # 3. Most 2pt games
-    # 4. Most 1pt games
+    # 2. Most 6pt games (perfect predictions)
+    # 3. Most 3pt games (correct results)
     leaderboard.sort(
-        key=lambda x: (x['total_points'], x['games_3pt'], x['games_2pt'], x['games_1pt']),
+        key=lambda x: (x['total_points'], x['games_6pt'], x['games_3pt']),
         reverse=True
     )
     
@@ -257,7 +274,6 @@ def main():
         # 'A6': '1-0',  # South Africa vs South Korea
         
         # Add more as matches are played...
-        'A1': '1-2', # Mexico vs South Africa
     }
     
     # Tournament winner and runner-up (leave as None until known)
