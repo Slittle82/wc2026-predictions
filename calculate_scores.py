@@ -46,6 +46,8 @@ PREDICTIONS_CSV_URL = (
 RESULTS_FILE = "results.json"
 LEADERBOARD_OUT = "leaderboard-data.json"
 PREDICTIONS_OUT = "predictions.json"
+RANK_HISTORY_OUT = "rank-history.json"
+RANK_HISTORY_MAX = 60
 TOTAL_MATCHES = 72
 
 # Kick-off times (all BST / +01:00, 2026). Used for the countdown, latest-results
@@ -100,6 +102,18 @@ def load_previous_ranks() -> Dict[str, int]:
         return {e["name"]: e["rank"] for e in data.get("leaderboard", []) if "rank" in e}
     except (json.JSONDecodeError, KeyError, OSError):
         return {}
+
+
+def load_rank_history() -> List[dict]:
+    """Read the existing rank-history.json (list of {date, ranks: {name: rank}})."""
+    if not os.path.exists(RANK_HISTORY_OUT):
+        return []
+    try:
+        with open(RANK_HISTORY_OUT, encoding="utf-8") as fh:
+            data = json.load(fh)
+        return data if isinstance(data, list) else []
+    except (json.JSONDecodeError, OSError):
+        return []
 
 
 # --------------------------------------------------------------------------- #
@@ -229,7 +243,7 @@ def split_fixture(column_header: str) -> Tuple[str, str]:
 # --------------------------------------------------------------------------- #
 # Build outputs
 # --------------------------------------------------------------------------- #
-def build(rows: List[dict], results: dict) -> Tuple[dict, dict]:
+def build(rows: List[dict], results: dict) -> Tuple[dict, dict, List[dict]]:
     actual = results["results"]
     winner = results["winner"]
     runner_up = results["runner_up"]
@@ -318,7 +332,20 @@ def build(rows: List[dict], results: dict) -> Tuple[dict, dict]:
         "matches": matches_meta,
         "entrants": sorted(entrants, key=lambda e: e["name"].lower()),
     }
-    return leaderboard_data, predictions_data
+
+    # Append today's rank snapshot to the rank-history (for the leaderboard
+    # trend sparklines). One snapshot per calendar day (UTC); re-running the
+    # script on the same day overwrites that day's snapshot.
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    rank_history = load_rank_history()
+    snapshot = {"date": today, "ranks": {e["name"]: e["rank"] for e in leaderboard}}
+    if rank_history and rank_history[-1].get("date") == today:
+        rank_history[-1] = snapshot
+    else:
+        rank_history.append(snapshot)
+    rank_history = rank_history[-RANK_HISTORY_MAX:]
+
+    return leaderboard_data, predictions_data, rank_history
 
 
 # --------------------------------------------------------------------------- #
@@ -347,15 +374,17 @@ def main() -> None:
         sys.exit(1)
 
     results = load_results()
-    leaderboard_data, predictions_data = build(rows, results)
+    leaderboard_data, predictions_data, rank_history = build(rows, results)
 
     with open(LEADERBOARD_OUT, "w", encoding="utf-8") as fh:
         json.dump(leaderboard_data, fh, indent=2, ensure_ascii=False)
     with open(PREDICTIONS_OUT, "w", encoding="utf-8") as fh:
         json.dump(predictions_data, fh, indent=2, ensure_ascii=False)
+    with open(RANK_HISTORY_OUT, "w", encoding="utf-8") as fh:
+        json.dump(rank_history, fh, indent=2, ensure_ascii=False)
 
     lb = leaderboard_data["leaderboard"]
-    print(f"\n[OK] {LEADERBOARD_OUT} + {PREDICTIONS_OUT} written")
+    print(f"\n[OK] {LEADERBOARD_OUT} + {PREDICTIONS_OUT} + {RANK_HISTORY_OUT} written")
     print(f"[OK] Entries: {len(lb)}  |  Matches scored: {leaderboard_data['matches_completed']}/{TOTAL_MATCHES}")
     if leaderboard_data["winner"]:
         print(f"[OK] Tournament winner set to: {leaderboard_data['winner']}")
