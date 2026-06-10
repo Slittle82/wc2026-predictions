@@ -163,9 +163,10 @@
   .hl-body { font-size: .9rem; color: var(--fg); margin-top: 2px; }
 
   /* ---------- Group standings ---------- */
-  .grouptable { font-size: .85rem; }
-  .grouptable th, .grouptable td { text-align: center; padding: 6px 8px; }
-  .grouptable th:first-child, .grouptable td:first-child { text-align: left; }
+  .grouptable { font-size: .85rem; table-layout: fixed; }
+  .grouptable th, .grouptable td { text-align: center; padding: 6px 4px; }
+  .grouptable th:first-child, .grouptable td:first-child { text-align: left; width: 32%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .grouptable th:not(:first-child) { width: 8.5%; }
   .pred-tables { margin: 14px 22px 4px; }
   .pred-tables summary { cursor: pointer; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--primary); padding: 8px 0; }
   .pred-tables[open] summary { margin-bottom: 6px; }
@@ -306,6 +307,11 @@
 
     <!-- LEADERBOARD -->
     <section class="panel active" id="panel-leaderboard" role="tabpanel">
+      <div class="card" id="today-card" style="display:none">
+        <div class="card-head"><h2>Today's Fixtures</h2><span class="hint">Kick-off times in your local timezone</span></div>
+        <div class="latest" id="today-fixtures"></div>
+      </div>
+
       <div class="card" id="latest-card" style="display:none">
         <div class="card-head"><h2>Latest Results</h2><span class="hint">Most recent matches scored</span></div>
         <div class="mvp" id="mvp"></div>
@@ -640,6 +646,23 @@ function renderLeaderboard(filter){
   }));
 }
 
+/* ---------- Today's fixtures ---------- */
+function renderToday(){
+  if(!PRED) return;
+  const todayStr = new Date().toDateString();
+  const todays = PRED.matches
+    .filter(m => m.kickoff && new Date(m.kickoff).toDateString() === todayStr)
+    .sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
+  const card = document.getElementById('today-card');
+  if(!todays.length){ card.style.display = 'none'; return; }
+  card.style.display = '';
+  document.getElementById('today-fixtures').innerHTML = todays.map(m => {
+    const t = new Date(m.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const mid = m.result ? `<b>${esc(m.result)}</b>` : `<b class="muted-col" style="font-weight:500">${t}</b>`;
+    return `<div class="lr-chip"><span class="fx-id">${m.id}</span> <span>${esc(m.home)}</span> ${mid} <span>${esc(m.away)}</span></div>`;
+  }).join('');
+}
+
 /* ---------- Latest results + matchday MVP ---------- */
 function renderLatest(){
   if(!PRED) return;
@@ -961,7 +984,7 @@ async function load(){
     renderLeaderboard(document.getElementById('lb-search').value);
     if(prRes.ok){
       PRED = await prRes.json();
-      fillPicksSelect(); fillCompareSelects(); renderFixtures(); renderLatest(); renderWinnerPicks(); renderPredictions(); renderHighlights(); startCountdown();
+      fillPicksSelect(); fillCompareSelects(); renderFixtures(); renderToday(); renderLatest(); renderWinnerPicks(); renderPredictions(); renderHighlights(); startCountdown();
     }
     if(LB.winner && !sessionStorage.getItem('wc-celebrated')){
       fireConfetti();
