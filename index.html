@@ -40,7 +40,7 @@
   .hero {
     position: relative;
     background: linear-gradient(135deg, rgba(30,64,175,.92) 0%, rgba(37,99,235,.85) 55%, rgba(124,58,237,.82) 100%), url('banner.PNG') center/cover no-repeat;
-    color: #fff; padding: 44px 20px 120px; text-align: center;
+    color: #fff; padding: 44px 20px 150px; text-align: center;
   }
   .hero .kicker { display: inline-block; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; background: rgba(255,255,255,.16); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; backdrop-filter: blur(4px); }
   .hero h1 { font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 700; line-height: 1.02; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
@@ -61,7 +61,7 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 
   /* ---------- Stats ---------- */
-  .stats { margin-top: -84px; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .stats { margin-top: -56px; position: relative; z-index: 5; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
   .stat { background: var(--surface); border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow); border-top: 4px solid var(--primary); }
   .stat.accent { border-top-color: var(--accent); } .stat.gold { border-top-color: var(--gold); }
   .stat .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
@@ -117,6 +117,25 @@
   .muted-col { color: var(--muted); }
   .mv { font-family: 'Barlow Condensed'; font-weight: 700; font-size: .95rem; display: inline-flex; align-items: center; gap: 2px; }
   .mv.up { color: var(--up); } .mv.down { color: var(--down); } .mv.same { color: var(--muted); } .mv.new { color: var(--primary); font-size: .72rem; }
+
+  /* ---------- Crowd predictions ---------- */
+  .pred-day-title { font-family:'Barlow Condensed'; font-size: 1.15rem; font-weight: 700; color: var(--primary); margin: 6px 22px 0; padding-bottom: 5px; }
+  .pred-match { padding: 14px 22px; border-bottom: 1px solid var(--muted-bg); }
+  .pm-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .pm-fixture { font-weight: 600; }
+  .pm-fixture .pm-id { font-family:'Barlow Condensed'; color: var(--muted); margin-right: 6px; }
+  .pm-time { font-size: .75rem; color: var(--muted); }
+  .pm-crowd { margin: 8px 0; display: flex; align-items: center; gap: 8px; }
+  .pm-crowd .cp { font-family:'Barlow Condensed'; font-weight:700; font-size: 1.4rem; color: var(--accent-dark); background: var(--muted-bg); padding: 2px 12px; border-radius: 8px; }
+  [data-theme="dark"] .pm-crowd .cp { color: var(--accent); }
+  .pm-crowd .cnt { font-size: .82rem; color: var(--muted); }
+  .pm-lean { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--muted-bg); margin: 8px 0 6px; }
+  .pm-lean .h { background: var(--primary); } .pm-lean .d { background: var(--silver); } .pm-lean .a { background: var(--secondary); }
+  .pm-legend { font-size: .76rem; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
+  .pm-legend i { font-style: normal; display: inline-flex; align-items: center; gap: 5px; }
+  .pm-legend .sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .pm-alts { font-size: .8rem; color: var(--muted); margin-top: 6px; }
+  .pm-alts b { color: var(--fg); font-family:'Barlow Condensed'; }
 
   /* ---------- Winner picks breakdown ---------- */
   .wp { padding: 16px 22px 22px; }
@@ -179,7 +198,7 @@
     .pick-row { grid-template-columns: 1fr auto auto; }
     .pick-row .res { display: none; }
     thead th.hide-sm, tbody td.hide-sm { display: none; }
-    .hero { padding-bottom: 110px; }
+    .hero { padding-bottom: 140px; }
     .wp-row { grid-template-columns: 96px 1fr 30px; }
   }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
@@ -210,6 +229,10 @@
       <button class="tab active" data-tab="leaderboard" role="tab">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 0 1-12 0V4zM6 6H3v2a3 3 0 0 0 3 3M18 6h3v2a3 3 0 0 1-3 3"/></svg>
         Leaderboard
+      </button>
+      <button class="tab" data-tab="predictions" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-6"/></svg>
+        Predictions
       </button>
       <button class="tab" data-tab="picks" role="tab">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -242,7 +265,14 @@
         <div id="lb-body"><div class="loading">Loading leaderboard…</div></div>
         <p class="updated" id="updated"></p>
       </div>
+    </section>
 
+    <!-- PREDICTIONS -->
+    <section class="panel" id="panel-predictions" role="tabpanel">
+      <div class="card">
+        <div class="card-head"><h2 id="crowd-title">Crowd Predictions</h2><span class="hint">What everyone reckons for the next games</span></div>
+        <div id="pred-games"><div class="loading">Loading predictions…</div></div>
+      </div>
       <div class="card">
         <div class="card-head"><h2>Who's Backed Who</h2><span class="hint">Tournament-winner picks</span></div>
         <div class="wp" id="winner-picks"></div>
@@ -476,6 +506,67 @@ function renderWinnerPicks(){
     </div>`).join('');
 }
 
+/* ---------- Crowd predictions (next games) ---------- */
+function renderPredictions(){
+  if(!PRED) return;
+  const now = new Date();
+  const withKO = PRED.matches.filter(m => m.kickoff);
+  const upcoming = withKO.filter(m => new Date(m.kickoff) > now).sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
+  let dayMatches, title;
+  if(upcoming.length){
+    const day = upcoming[0].kickoff.slice(0,10);
+    dayMatches = upcoming.filter(m => m.kickoff.slice(0,10) === day);
+    const dl = new Date(day).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    title = `Next games · ${dl}`;
+  } else {
+    // tournament finished — show the final day's games
+    const last = [...withKO].sort((a,b)=> new Date(b.kickoff) - new Date(a.kickoff))[0];
+    const day = last ? last.kickoff.slice(0,10) : null;
+    dayMatches = day ? withKO.filter(m => m.kickoff.slice(0,10) === day) : [];
+    title = 'Latest games';
+  }
+  document.getElementById('crowd-title').textContent = 'Crowd Predictions';
+
+  const total = PRED.entrants.length;
+  let html = `<div class="pred-day-title">${esc(title)}</div>`;
+  if(!dayMatches.length){ html += `<div class="empty">No upcoming games to show.</div>`; }
+  dayMatches.forEach(m => {
+    const tally = {}; let leanH=0, leanD=0, leanA=0, votes=0;
+    PRED.entrants.forEach(en => {
+      const pick = (en.picks[m.id]||'').trim();
+      const ps = parseScore(pick);
+      if(!ps) return;
+      votes++;
+      tally[pick] = (tally[pick]||0) + 1;
+      const r = res(ps[0], ps[1]); if(r>0) leanH++; else if(r<0) leanA++; else leanD++;
+    });
+    const sorted = Object.entries(tally).sort((a,b)=> b[1]-a[1]);
+    const ko = m.kickoff ? new Date(m.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) : '';
+    const pct = n => votes ? Math.round(n/votes*100) : 0;
+    const top = sorted[0];
+    const alts = sorted.slice(1,4).map(([s,c])=>`<b>${esc(s)}</b> (${c})`).join(' · ');
+    html += `<div class="pred-match">
+      <div class="pm-top">
+        <span class="pm-fixture"><span class="pm-id">${m.id}</span>${esc(m.home)} v ${esc(m.away)}</span>
+        <span class="pm-time">${ko}${m.result?` · result ${esc(m.result)}`:''}</span>
+      </div>`;
+    if(top){
+      html += `<div class="pm-crowd"><span class="cp">${esc(top[0])}</span><span class="cnt">crowd favourite · ${top[1]} of ${votes} picks</span></div>
+      <div class="pm-lean"><span class="h" style="width:${pct(leanH)}%"></span><span class="d" style="width:${pct(leanD)}%"></span><span class="a" style="width:${pct(leanA)}%"></span></div>
+      <div class="pm-legend">
+        <i><span class="sw" style="background:var(--primary)"></span>${esc(m.home)} win ${pct(leanH)}%</i>
+        <i><span class="sw" style="background:var(--silver)"></span>Draw ${pct(leanD)}%</i>
+        <i><span class="sw" style="background:var(--secondary)"></span>${esc(m.away)} win ${pct(leanA)}%</i>
+      </div>
+      ${alts?`<div class="pm-alts">Also backed: ${alts}</div>`:''}`;
+    } else {
+      html += `<div class="pm-alts">No predictions recorded for this match.</div>`;
+    }
+    html += `</div>`;
+  });
+  document.getElementById('pred-games').innerHTML = html;
+}
+
 /* ---------- My Picks ---------- */
 let picksInit = false;
 function fillPicksSelect(){
@@ -590,7 +681,7 @@ async function load(){
     renderLeaderboard(document.getElementById('lb-search').value);
     if(prRes.ok){
       PRED = await prRes.json();
-      fillPicksSelect(); renderFixtures(); renderLatest(); renderWinnerPicks(); startCountdown();
+      fillPicksSelect(); renderFixtures(); renderLatest(); renderWinnerPicks(); renderPredictions(); startCountdown();
     }
   } catch(err){
     console.error(err);
