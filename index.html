@@ -57,6 +57,14 @@
   }
   .theme-toggle:hover { background: rgba(255,255,255,.28); }
   .theme-toggle svg { width: 20px; height: 20px; }
+  .hero .cta {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 22px;
+    background: var(--accent); color: #1a1206; font-weight: 700; font-size: 1.05rem;
+    padding: 14px 28px; border-radius: 10px; text-decoration: none;
+    box-shadow: 0 6px 20px rgba(245,158,11,.4); transition: transform .2s, box-shadow .2s;
+  }
+  .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(245,158,11,.55); }
+  .hero .cta svg { width: 20px; height: 20px; }
 
   /* ---------- Champion takeover ---------- */
   .hero.champion { background: linear-gradient(135deg, rgba(180,83,9,.92) 0%, rgba(245,158,11,.85) 55%, rgba(124,58,237,.7) 100%), url('banner.PNG') center/cover no-repeat; }
@@ -247,6 +255,10 @@
       <span class="kicker">Durham Football Lodge · Charity Predictor</span>
       <h1>World Cup 2026 Prediction Contest</h1>
       <p class="tagline">72 group-stage matches. One champion. 50% to charity.</p>
+      <a class="cta" href="https://forms.gle/oSWKEe5dahrLgCyg6" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        Enter the Competition
+      </a>
       <div id="countdown-wrap" style="display:none">
         <div class="countdown" id="countdown"></div>
         <div class="cd-label" id="countdown-label"></div>
@@ -258,7 +270,7 @@
 
   <div class="wrap">
     <section class="stats" aria-label="Contest statistics">
-      <div class="stat gold"><div class="label">Prize Pot</div><div class="value tabular" id="s-pot">£—</div><div class="sub" id="s-pot-sub">entries closed</div></div>
+      <div class="stat gold"><div class="label">Prize Pot</div><div class="value tabular" id="s-pot">£—</div><div class="sub" id="s-pot-sub">entries so far</div></div>
       <div class="stat"><div class="label">Matches Scored</div><div class="value tabular" id="s-matches">—</div><div class="sub">of 72 group games</div></div>
       <div class="stat gold"><div class="label">1st Prize</div><div class="value tabular" id="s-first">£—</div><div class="sub">35% of pot</div></div>
       <div class="stat accent"><div class="label">2nd Prize</div><div class="value tabular" id="s-second">£—</div><div class="sub">15% of pot</div></div>
@@ -401,7 +413,7 @@
           </ol>
 
           <h3>Payment</h3>
-          <p>Entries are now closed. If you still owe your £10 entry:</p>
+          <p>Entry is £10 per person. Pay by bank transfer:</p>
           <div class="pay-box">
             <div><strong>Account name:</strong> Ivan Lowther</div>
             <div><strong>Sort code:</strong> 04-00-03</div>
@@ -517,7 +529,7 @@ function sparkline(name){
 function renderStats(d){
   const pot = d.total_entries * ENTRY_FEE;
   document.getElementById('s-pot').textContent = gbp(pot);
-  document.getElementById('s-pot-sub').textContent = d.total_entries + ' entries · closed';
+  document.getElementById('s-pot-sub').textContent = d.total_entries + ' entries so far';
   document.getElementById('s-matches').textContent = d.matches_completed + '/' + d.total_matches;
   document.getElementById('s-first').textContent  = gbp(pot*0.35);
   document.getElementById('s-second').textContent = gbp(pot*0.15);
