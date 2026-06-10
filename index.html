@@ -299,6 +299,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         Fixtures
       </button>
+      <button class="tab" data-tab="groups" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Groups
+      </button>
       <button class="tab" data-tab="rules" role="tab">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
         Rules
@@ -308,7 +312,7 @@
     <!-- LEADERBOARD -->
     <section class="panel active" id="panel-leaderboard" role="tabpanel">
       <div class="card" id="today-card" style="display:none">
-        <div class="card-head"><h2>Today's Fixtures</h2><span class="hint">Kick-off times in your local timezone</span></div>
+        <div class="card-head"><h2>Fixtures in the next 24hrs</h2><span class="hint">Kick-off times in your local timezone</span></div>
         <div class="latest" id="today-fixtures"></div>
       </div>
 
@@ -378,6 +382,10 @@
         <div class="card-head"><h2>Fixtures &amp; Results</h2><span class="hint">Actual scores appear as matches finish · times shown in your local timezone</span></div>
         <div id="fixtures-content" class="rules"><div class="loading">Loading fixtures…</div></div>
       </div>
+    </section>
+
+    <!-- GROUPS -->
+    <section class="panel" id="panel-groups" role="tabpanel">
       <div class="card">
         <div class="card-head"><h2>Group Standings</h2><span class="hint">Based on actual results so far</span></div>
         <div id="group-standings" class="rules"></div>
@@ -646,20 +654,21 @@ function renderLeaderboard(filter){
   }));
 }
 
-/* ---------- Today's fixtures ---------- */
+/* ---------- Fixtures in the next 24hrs ---------- */
 function renderToday(){
   if(!PRED) return;
-  const todayStr = new Date().toDateString();
-  const todays = PRED.matches
-    .filter(m => m.kickoff && new Date(m.kickoff).toDateString() === todayStr)
+  const now = Date.now();
+  const upcoming = PRED.matches
+    .filter(m => { if(!m.kickoff) return false; const t = new Date(m.kickoff).getTime(); return t >= now && t <= now + MS.d; })
     .sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
   const card = document.getElementById('today-card');
-  if(!todays.length){ card.style.display = 'none'; return; }
+  if(!upcoming.length){ card.style.display = 'none'; return; }
   card.style.display = '';
-  document.getElementById('today-fixtures').innerHTML = todays.map(m => {
-    const t = new Date(m.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-    const mid = m.result ? `<b>${esc(m.result)}</b>` : `<b class="muted-col" style="font-weight:500">${t}</b>`;
-    return `<div class="lr-chip"><span class="fx-id">${m.id}</span> <span>${esc(m.home)}</span> ${mid} <span>${esc(m.away)}</span></div>`;
+  document.getElementById('today-fixtures').innerHTML = upcoming.map(m => {
+    const ko = new Date(m.kickoff);
+    const sameDay = ko.toDateString() === new Date().toDateString();
+    const t = ko.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + (sameDay ? '' : ' ' + ko.toLocaleDateString('en-GB',{weekday:'short'}));
+    return `<div class="lr-chip"><span class="fx-id">${m.id}</span> <span>${esc(m.home)}</span> <b class="muted-col" style="font-weight:500">${t}</b> <span>${esc(m.away)}</span></div>`;
   }).join('');
 }
 
