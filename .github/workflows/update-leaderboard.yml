@@ -1,7 +1,7 @@
 name: Update Leaderboard
 
 # Rebuilds leaderboard-data.json + predictions.json whenever you edit results.json
-# (or the script) on GitHub, and can be run manually from the Actions tab.
+# (or the script) on GitHub, on a daily schedule, and on demand from the Actions tab.
 on:
   push:
     branches: [ main ]
@@ -9,6 +9,12 @@ on:
       - 'results.json'
       - 'calculate_scores.py'
       - '.github/workflows/update-leaderboard.yml'
+  schedule:
+    # Daily safety-net rebuilds (UTC). 06:00 UTC = 07:00 BST (after overnight games),
+    # 21:00 UTC = 22:00 BST (after evening games). Keeps the board fresh even on
+    # days no score is entered manually.
+    - cron: '0 6 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
 
 permissions:
