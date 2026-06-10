@@ -123,7 +123,6 @@
   .rankbox { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; font-family: 'Barlow Condensed'; font-weight: 700; background: var(--muted-bg); color: var(--muted); }
   tr.top1 .rankbox { background: var(--gold); color: #4a3000; }
   tr.top2 .rankbox { background: var(--silver); color: #1f2937; }
-  tr.top3 .rankbox { background: var(--bronze); color: #fff; }
   .pname { font-weight: 600; }
   .pts-total { font-family: 'Barlow Condensed'; font-weight: 700; font-size: 1.3rem; color: var(--primary); }
   .pill { display: inline-block; font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
@@ -188,10 +187,6 @@
     <span class="kicker">Durham Football Lodge · Charity Predictor</span>
     <h1>World Cup 2026 Prediction Contest</h1>
     <p class="tagline">72 group-stage matches. One champion. 50% to charity.</p>
-    <a class="cta" href="https://forms.gle/oSWKEe5dahrLgCyg6" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-      Enter the Competition
-    </a>
   </header>
 
   <div class="wrap">
@@ -366,7 +361,7 @@ function renderLeaderboard(filter){
     <th>Perfect</th><th class="hide-sm">Paid</th></tr></thead><tbody>`;
   if(!rows.length){ html += `<tr><td colspan="7" class="empty">No players match “${filter}”.</td></tr>`; }
   rows.forEach(e => {
-    const tc = e.rank<=3 ? `top${e.rank}` : '';
+    const tc = e.rank<=2 ? `top${e.rank}` : '';
     html += `<tr class="${tc}">
       <td><span class="rankbox">${e.rank}</span></td>
       <td class="left"><span class="pname">${esc(e.name)}</span>${winnerSet?` <span class="muted-col" style="font-size:.8rem">· ${esc(e.winner_pick||'')}</span>`:''}</td>
