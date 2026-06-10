@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-10T13:39:16+00:00",
+  "last_updated": "2026-06-10T14:15:35+00:00",
   "total_entries": 23,
   "matches_completed": 0,
   "total_matches": 72,
@@ -64,7 +64,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 5,
-      "previous_rank": null
+      "previous_rank": 5
     },
     {
       "name": "Cheesy Chips and Gravy FC",
@@ -112,7 +112,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 9,
-      "previous_rank": null
+      "previous_rank": 9
     },
     {
       "name": "Terry Davis",
