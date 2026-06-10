@@ -1,0 +1,46 @@
+name: Update Leaderboard
+
+# Rebuilds leaderboard-data.json + predictions.json whenever you edit results.json
+# (or the script) on GitHub, and can be run manually from the Actions tab.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'results.json'
+      - 'calculate_scores.py'
+      - '.github/workflows/update-leaderboard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-leaderboard
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Calculate scores from live Google Sheet
+        run: python3 calculate_scores.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add leaderboard-data.json predictions.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-update leaderboard ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
