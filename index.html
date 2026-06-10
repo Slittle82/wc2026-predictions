@@ -10,91 +10,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --primary: #2563EB;
-    --primary-dark: #1E40AF;
-    --secondary: #7C3AED;
-    --accent: #F59E0B;
-    --accent-dark: #B45309;
-    --bg: #EFF6FF;
-    --surface: #FFFFFF;
-    --fg: #0F172A;
-    --muted: #64748B;
-    --muted-bg: #F1F5FD;
-    --border: #E4ECFC;
-    --success: #16A34A;
-    --danger: #DC2626;
-    --gold: #F59E0B; --silver: #94A3B8; --bronze: #CD7F32;
-    --radius: 14px;
-    --shadow: 0 4px 20px rgba(30,64,175,.08);
-    --shadow-lg: 0 10px 40px rgba(30,64,175,.16);
+    --primary: #2563EB; --primary-dark: #1E40AF; --secondary: #7C3AED;
+    --accent: #F59E0B; --accent-dark: #B45309;
+    --bg: #EFF6FF; --surface: #FFFFFF; --fg: #0F172A; --muted: #64748B;
+    --muted-bg: #F1F5FD; --border: #E4ECFC;
+    --success: #16A34A; --danger: #DC2626;
+    --gold: #F59E0B; --silver: #94A3B8;
+    --up: #16A34A; --down: #DC2626;
+    --radius: 14px; --shadow: 0 4px 20px rgba(30,64,175,.08); --shadow-lg: 0 10px 40px rgba(30,64,175,.16);
+  }
+  [data-theme="dark"] {
+    --primary: #3B82F6; --primary-dark: #1D4ED8;
+    --bg: #0B1220; --surface: #111E36; --fg: #E2E8F0; --muted: #94A3B8;
+    --muted-bg: #16243B; --border: #243a5e;
+    --shadow: 0 4px 20px rgba(0,0,0,.35); --shadow-lg: 0 10px 40px rgba(0,0,0,.5);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Barlow', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--fg);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
+    background: var(--bg); color: var(--fg); line-height: 1.55;
+    -webkit-font-smoothing: antialiased; transition: background .3s, color .3s;
   }
   h1,h2,h3,.condensed { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .01em; }
   .tabular { font-variant-numeric: tabular-nums; }
+  a { color: var(--primary); }
 
-  /* ---------- Header / hero ---------- */
+  /* ---------- Hero ---------- */
   .hero {
     position: relative;
-    background:
-      linear-gradient(135deg, rgba(30,64,175,.92) 0%, rgba(37,99,235,.85) 55%, rgba(124,58,237,.82) 100%),
-      url('banner.PNG') center/cover no-repeat;
-    color: #fff;
-    padding: 48px 20px 120px;
-    text-align: center;
+    background: linear-gradient(135deg, rgba(30,64,175,.92) 0%, rgba(37,99,235,.85) 55%, rgba(124,58,237,.82) 100%), url('banner.PNG') center/cover no-repeat;
+    color: #fff; padding: 44px 20px 120px; text-align: center;
   }
-  .hero .kicker {
-    display: inline-block; font-weight: 600; font-size: .8rem; text-transform: uppercase;
-    letter-spacing: .15em; background: rgba(255,255,255,.16); padding: 6px 14px;
-    border-radius: 999px; margin-bottom: 14px; backdrop-filter: blur(4px);
-  }
+  .hero .kicker { display: inline-block; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; background: rgba(255,255,255,.16); padding: 6px 14px; border-radius: 999px; margin-bottom: 14px; backdrop-filter: blur(4px); }
   .hero h1 { font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 700; line-height: 1.02; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
   .hero .tagline { font-size: clamp(1rem,2.5vw,1.25rem); opacity: .95; margin-top: 8px; font-weight: 500; }
-  .hero .cta {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 22px;
-    background: var(--accent); color: #1a1206; font-weight: 700; font-size: 1.05rem;
-    padding: 14px 28px; border-radius: 10px; text-decoration: none;
-    box-shadow: 0 6px 20px rgba(245,158,11,.4); transition: transform .2s, box-shadow .2s;
+  .countdown { margin-top: 20px; display: inline-flex; gap: 10px; }
+  .cd-box { background: rgba(255,255,255,.14); border-radius: 10px; padding: 8px 12px; min-width: 58px; backdrop-filter: blur(4px); }
+  .cd-box .n { font-family: 'Barlow Condensed'; font-size: 1.7rem; font-weight: 700; line-height: 1; }
+  .cd-box .u { font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; opacity: .85; }
+  .cd-label { font-size: .8rem; opacity: .9; margin-top: 10px; }
+  .theme-toggle {
+    position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,.16);
+    border: none; color: #fff; width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: background .2s;
   }
-  .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(245,158,11,.55); }
-  .hero .cta svg { width: 20px; height: 20px; }
+  .theme-toggle:hover { background: rgba(255,255,255,.28); }
+  .theme-toggle svg { width: 20px; height: 20px; }
 
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 
-  /* ---------- Stat dashboard ---------- */
-  .stats {
-    margin-top: -84px; display: grid; gap: 14px;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  .stat {
-    background: var(--surface); border-radius: var(--radius); padding: 18px 16px;
-    box-shadow: var(--shadow); border-top: 4px solid var(--primary); position: relative;
-  }
-  .stat.accent { border-top-color: var(--accent); }
-  .stat.gold { border-top-color: var(--gold); }
+  /* ---------- Stats ---------- */
+  .stats { margin-top: -84px; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .stat { background: var(--surface); border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow); border-top: 4px solid var(--primary); }
+  .stat.accent { border-top-color: var(--accent); } .stat.gold { border-top-color: var(--gold); }
   .stat .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
   .stat .value { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--fg); margin-top: 2px; }
   .stat .sub { font-size: .75rem; color: var(--muted); }
 
   /* ---------- Tabs ---------- */
-  .tabs {
-    display: flex; gap: 6px; margin: 28px 0 0; background: var(--surface);
-    border-radius: 999px; padding: 6px; box-shadow: var(--shadow);
-    position: sticky; top: 10px; z-index: 30; overflow-x: auto; -webkit-overflow-scrolling: touch;
-  }
-  .tab {
-    flex: 1 0 auto; border: none; background: transparent; cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 600;
-    color: var(--muted); padding: 11px 18px; border-radius: 999px; white-space: nowrap;
-    transition: background .2s, color .2s; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 7px;
-  }
+  .tabs { display: flex; gap: 6px; margin: 28px 0 0; background: var(--surface); border-radius: 999px; padding: 6px; box-shadow: var(--shadow); position: sticky; top: 10px; z-index: 30; overflow-x: auto; }
+  .tab { flex: 1 0 auto; border: none; background: transparent; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--muted); padding: 11px 18px; border-radius: 999px; white-space: nowrap; transition: background .2s, color .2s; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 7px; }
   .tab svg { width: 18px; height: 18px; }
   .tab.active { background: var(--primary); color: #fff; box-shadow: 0 4px 12px rgba(37,99,235,.35); }
   .tab:hover:not(.active) { background: var(--muted-bg); color: var(--primary); }
@@ -103,23 +79,31 @@
   .panel.active { display: block; }
   @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-  .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 18px; }
   .card-head { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
   .card-head h2 { font-size: 1.5rem; font-weight: 700; color: var(--fg); }
   .card-head .hint { font-size: .85rem; color: var(--muted); }
 
+  /* ---------- Latest results + matchday ---------- */
+  .latest { padding: 16px 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .lr-chip { background: var(--muted-bg); border-radius: 10px; padding: 8px 12px; display: flex; gap: 8px; align-items: center; font-size: .9rem; }
+  .lr-chip b { font-family: 'Barlow Condensed'; font-size: 1.05rem; }
+  .mvp { padding: 0 22px 16px; }
+  .mvp .banner { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: #1a1206; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+  .mvp .banner svg { width: 26px; height: 26px; flex: none; }
+  .mvp .banner .t { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; opacity: .85; }
+  .mvp .banner .n { font-family: 'Barlow Condensed'; font-size: 1.35rem; font-weight: 700; }
+
   /* ---------- Leaderboard table ---------- */
-  .lb-search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px; font: inherit; margin: 16px 22px; width: calc(100% - 44px); }
+  .lb-search { display: block; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px; font: inherit; margin: 16px 22px; width: calc(100% - 44px); background: var(--surface); color: var(--fg); }
   table { width: 100%; border-collapse: collapse; }
-  thead th {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
-    font-size: .9rem; text-transform: uppercase; letter-spacing: .03em; padding: 13px 12px; text-align: center;
-  }
+  thead th { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: .9rem; text-transform: uppercase; letter-spacing: .03em; padding: 13px 12px; text-align: center; }
   thead th.left { text-align: left; }
   tbody td { padding: 13px 12px; text-align: center; border-bottom: 1px solid var(--border); }
   tbody td.left { text-align: left; }
+  tbody tr { cursor: pointer; }
   tbody tr:hover { background: var(--muted-bg); }
+  tbody tr.me { background: color-mix(in srgb, var(--accent) 18%, var(--surface)); box-shadow: inset 4px 0 0 var(--accent); }
   .rankbox { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; font-family: 'Barlow Condensed'; font-weight: 700; background: var(--muted-bg); color: var(--muted); }
   tr.top1 .rankbox { background: var(--gold); color: #4a3000; }
   tr.top2 .rankbox { background: var(--silver); color: #1f2937; }
@@ -127,39 +111,55 @@
   .pts-total { font-family: 'Barlow Condensed'; font-weight: 700; font-size: 1.3rem; color: var(--primary); }
   .pill { display: inline-block; font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
   .pill-perfect { background: #DCFCE7; color: #166534; }
+  [data-theme="dark"] .pill-perfect { background: #14391f; color: #86efac; }
   .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
   .dot.paid { background: var(--success); } .dot.unpaid { background: var(--danger); }
   .muted-col { color: var(--muted); }
+  .mv { font-family: 'Barlow Condensed'; font-weight: 700; font-size: .95rem; display: inline-flex; align-items: center; gap: 2px; }
+  .mv.up { color: var(--up); } .mv.down { color: var(--down); } .mv.same { color: var(--muted); } .mv.new { color: var(--primary); font-size: .72rem; }
+
+  /* ---------- Winner picks breakdown ---------- */
+  .wp { padding: 16px 22px 22px; }
+  .wp-row { display: grid; grid-template-columns: 130px 1fr 36px; gap: 10px; align-items: center; margin-bottom: 7px; font-size: .9rem; }
+  .wp-row .team { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wp-bar { background: var(--muted-bg); border-radius: 999px; height: 16px; overflow: hidden; }
+  .wp-bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 999px; }
+  .wp-row .cnt { text-align: right; font-family: 'Barlow Condensed'; font-weight: 700; color: var(--muted); }
 
   /* ---------- My Picks ---------- */
   .picker { padding: 20px 22px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  .picker select { flex: 1; min-width: 200px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font: inherit; min-height: 44px; background: #fff; }
+  .picker select { flex: 1; min-width: 200px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font: inherit; min-height: 44px; background: var(--surface); color: var(--fg); }
+  .share-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 12px 18px; font: inherit; font-weight: 600; cursor: pointer; min-height: 44px; transition: transform .15s; }
+  .share-btn:hover { transform: translateY(-1px); } .share-btn svg { width: 18px; height: 18px; }
   .picks-summary { padding: 0 22px 8px; display: flex; gap: 14px; flex-wrap: wrap; }
   .summary-chip { background: var(--muted-bg); border-radius: 10px; padding: 10px 16px; }
   .summary-chip .l { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
   .summary-chip .v { font-family: 'Barlow Condensed'; font-size: 1.4rem; font-weight: 700; }
   .group-block { padding: 8px 22px 20px; }
-  .group-title { font-family: 'Barlow Condensed'; font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); margin: 16px 0 8px; padding-bottom: 5px; border-bottom: 2px solid var(--border); }
+  .group-title { font-family: 'Barlow Condensed'; font-size: 1.15rem; font-weight: 700; color: var(--primary); margin: 16px 0 8px; padding-bottom: 5px; border-bottom: 2px solid var(--border); }
   .pick-row { display: grid; grid-template-columns: 1fr auto auto auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--muted-bg); font-size: .92rem; }
-  .pick-row .fixture { color: var(--fg); }
   .pick-row .pred { font-family: 'Barlow Condensed'; font-weight: 700; font-size: 1.05rem; min-width: 44px; text-align: center; }
   .pick-row .res { font-family: 'Barlow Condensed'; font-weight: 600; min-width: 44px; text-align: center; color: var(--muted); }
   .pick-row .ptbadge { min-width: 42px; text-align: center; font-weight: 700; font-size: .8rem; padding: 3px 8px; border-radius: 8px; }
   .pt6 { background:#DCFCE7; color:#166534; } .pt4 { background:#DBEAFE; color:#1E40AF; }
   .pt3 { background:#FEF3C7; color:#92400E; } .pt1 { background:#FCE7F3; color:#9D174D; }
   .pt0 { background:#F1F5F9; color:#64748B; } .ptpending { background: transparent; color: var(--muted); }
+  [data-theme="dark"] .pt6{background:#14391f;color:#86efac;} [data-theme="dark"] .pt4{background:#16294d;color:#93c5fd;}
+  [data-theme="dark"] .pt3{background:#3a2c0c;color:#fcd34d;} [data-theme="dark"] .pt1{background:#3d1430;color:#f9a8d4;}
+  [data-theme="dark"] .pt0{background:#1b2942;color:#94a3b8;}
   .empty { padding: 50px 22px; text-align: center; color: var(--muted); }
 
   /* ---------- Fixtures ---------- */
-  .fixture-card { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--muted-bg); }
+  .fixture-card { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--muted-bg); }
   .fx-id { font-family:'Barlow Condensed'; font-weight:700; color: var(--muted); font-size:.85rem; }
+  .fx-meta { font-size: .72rem; color: var(--muted); }
   .fx-score { font-family:'Barlow Condensed'; font-weight:700; font-size:1.1rem; }
   .fx-score.pending { color: var(--muted); font-size: .8rem; font-family:'Barlow'; font-weight:500; }
 
-  /* ---------- Rules / payment ---------- */
+  /* ---------- Rules ---------- */
   .rules { padding: 8px 22px 26px; }
-  .rules h3 { font-size: 1.25rem; margin: 22px 0 8px; color: var(--primary-dark); }
-  .rules p, .rules li { color: #334155; }
+  .rules h3 { font-size: 1.25rem; margin: 22px 0 8px; color: var(--primary); }
+  .rules p, .rules li { color: var(--fg); }
   .rules ul, .rules ol { margin: 6px 0 6px 22px; }
   .rules li { margin-bottom: 5px; }
   .pay-box { background: var(--muted-bg); border: 1px dashed var(--primary); border-radius: 12px; padding: 16px 20px; margin: 12px 0; font-family: ui-monospace, monospace; }
@@ -170,28 +170,36 @@
   .badge-pts { font-weight: 700; color: var(--primary); }
 
   footer { text-align: center; padding: 28px 16px 40px; color: var(--muted); font-size: .85rem; }
-  .updated { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 14px; }
+  .updated { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 6px; }
   .loading { padding: 40px; text-align: center; color: var(--muted); }
+  .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--fg); color: var(--bg); padding: 12px 20px; border-radius: 10px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 100; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   @media (max-width: 640px) {
     .pick-row { grid-template-columns: 1fr auto auto; }
     .pick-row .res { display: none; }
     thead th.hide-sm, tbody td.hide-sm { display: none; }
     .hero { padding-bottom: 110px; }
+    .wp-row { grid-template-columns: 96px 1fr 30px; }
   }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
   <header class="hero">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
     <span class="kicker">Durham Football Lodge · Charity Predictor</span>
     <h1>World Cup 2026 Prediction Contest</h1>
     <p class="tagline">72 group-stage matches. One champion. 50% to charity.</p>
+    <div id="countdown-wrap" style="display:none">
+      <div class="countdown" id="countdown"></div>
+      <div class="cd-label" id="countdown-label"></div>
+    </div>
   </header>
 
   <div class="wrap">
     <section class="stats" aria-label="Contest statistics">
-      <div class="stat"><div class="label">Entries</div><div class="value tabular" id="s-entries">—</div><div class="sub">players in</div></div>
+      <div class="stat gold"><div class="label">Prize Pot</div><div class="value tabular" id="s-pot">£—</div><div class="sub" id="s-pot-sub">entries closed</div></div>
       <div class="stat"><div class="label">Matches Scored</div><div class="value tabular" id="s-matches">—</div><div class="sub">of 72 group games</div></div>
       <div class="stat gold"><div class="label">1st Prize</div><div class="value tabular" id="s-first">£—</div><div class="sub">35% of pot</div></div>
       <div class="stat accent"><div class="label">2nd Prize</div><div class="value tabular" id="s-second">£—</div><div class="sub">15% of pot</div></div>
@@ -219,26 +227,38 @@
 
     <!-- LEADERBOARD -->
     <section class="panel active" id="panel-leaderboard" role="tabpanel">
+      <div class="card" id="latest-card" style="display:none">
+        <div class="card-head"><h2>Latest Results</h2><span class="hint">Most recent matches scored</span></div>
+        <div class="mvp" id="mvp"></div>
+        <div class="latest" id="latest"></div>
+      </div>
+
       <div class="card">
         <div class="card-head">
           <h2>Leaderboard</h2>
-          <span class="hint">Ties broken by perfect scores, then correct results</span>
+          <span class="hint">Tap your row to highlight yourself · ties broken by perfect scores</span>
         </div>
         <input class="lb-search" id="lb-search" type="search" placeholder="Search for a name…" aria-label="Search leaderboard" />
         <div id="lb-body"><div class="loading">Loading leaderboard…</div></div>
+        <p class="updated" id="updated"></p>
       </div>
-      <p class="updated" id="updated"></p>
+
+      <div class="card">
+        <div class="card-head"><h2>Who's Backed Who</h2><span class="hint">Tournament-winner picks</span></div>
+        <div class="wp" id="winner-picks"></div>
+      </div>
     </section>
 
     <!-- MY PICKS -->
     <section class="panel" id="panel-picks" role="tabpanel">
       <div class="card">
-        <div class="card-head">
-          <h2>My Picks</h2>
-          <span class="hint">See every score you predicted</span>
-        </div>
+        <div class="card-head"><h2>My Picks</h2><span class="hint">See every score you predicted</span></div>
         <div class="picker">
           <select id="picks-select" aria-label="Choose your name"><option value="">Choose your name…</option></select>
+          <button class="share-btn" id="share-btn" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            Share
+          </button>
         </div>
         <div id="picks-content"><div class="empty">Select your name above to view your predictions.</div></div>
       </div>
@@ -255,18 +275,8 @@
     <!-- RULES -->
     <section class="panel" id="panel-rules" role="tabpanel">
       <div class="card">
-        <div class="card-head"><h2>Rules &amp; How to Enter</h2></div>
+        <div class="card-head"><h2>Rules &amp; Scoring</h2></div>
         <div class="rules">
-          <h3>Entry — £10</h3>
-          <p>Complete the <a href="https://forms.gle/oSWKEe5dahrLgCyg6" target="_blank" rel="noopener">entry form</a>, predict all 72 group-stage scores plus your tournament winner, then transfer your £10 entry to:</p>
-          <div class="pay-box">
-            <div><strong>Account name:</strong> Ivan Lowther</div>
-            <div><strong>Sort code:</strong> 04-00-03</div>
-            <div><strong>Account no:</strong> 36801274</div>
-            <div><strong>Reference:</strong> WC [your name]</div>
-          </div>
-          <p>Predictions without payment by the first kick-off will be removed from the competition.</p>
-
           <h3>Prize Pot</h3>
           <ul>
             <li><strong>1st place:</strong> 35% of the total pot</li>
@@ -282,7 +292,7 @@
             <tr><td>Perfect prediction (both scores exact)</td><td class="badge-pts">6</td></tr>
             <tr><td>One team's score correct, wrong result</td><td class="badge-pts">1</td></tr>
           </table>
-          <p style="font-size:.88rem;color:var(--muted)">1 pt per correct individual score + 3 pts for the correct result + 1 bonus point when both scores are exact. Scores are entered as <em>home-away</em>, e.g. <strong>2-1</strong>.</p>
+          <p style="font-size:.88rem;color:var(--muted)">1 pt per correct individual score + 3 pts for the correct result + 1 bonus point when both scores are exact. Scores are <em>home-away</em>, e.g. <strong>2-1</strong>.</p>
 
           <h3>Tournament Winner Bonus</h3>
           <ul>
@@ -295,17 +305,41 @@
             <li>Most perfect (6-point) predictions</li>
             <li>Then most correct results (3-point predictions)</li>
           </ol>
+
+          <h3>Payment</h3>
+          <p>Entries are now closed. If you still owe your £10 entry:</p>
+          <div class="pay-box">
+            <div><strong>Account name:</strong> Ivan Lowther</div>
+            <div><strong>Sort code:</strong> 04-00-03</div>
+            <div><strong>Account no:</strong> 36801274</div>
+            <div><strong>Reference:</strong> WC [your name]</div>
+          </div>
         </div>
       </div>
     </section>
   </div>
 
   <footer>Durham Football Lodge · World Cup 2026 Predictor · A charity fundraiser</footer>
+  <div class="toast" id="toast"></div>
 
 <script>
 const ENTRY_FEE = 10;
 const cacheBust = () => '?t=' + Date.now();
 let LB = null, PRED = null;
+const MS = { d:864e5, h:36e5, m:6e4, s:1e3 };
+
+/* ---------- Theme ---------- */
+const sun = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const moon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+function applyTheme(t){ document.documentElement.setAttribute('data-theme', t); document.getElementById('theme-toggle').innerHTML = t==='dark'?sun:moon; }
+(function initTheme(){
+  const saved = localStorage.getItem('wc-theme');
+  applyTheme(saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+})();
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const t = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  localStorage.setItem('wc-theme', t); applyTheme(t);
+});
 
 /* ---------- Tabs ---------- */
 document.querySelectorAll('.tab').forEach(btn => {
@@ -318,13 +352,15 @@ document.querySelectorAll('.tab').forEach(btn => {
 });
 
 const gbp = n => '£' + n.toFixed(2);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toast = m => { const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); };
 
 /* ---------- Points helper (mirrors calculate_scores.py) ---------- */
 function parseScore(s){ if(!s||!s.includes('-'))return null; const p=s.trim().split('-'); const h=+p[0],a=+p[1]; return (Number.isInteger(h)&&Number.isInteger(a))?[h,a]:null; }
 function res(h,a){ return (h>a)-(h<a); }
 function matchPoints(pred, actual){
   const p=parseScore(pred), x=parseScore(actual);
-  if(!p||!x) return null; // pending
+  if(!p||!x) return null;
   let pt=0;
   if(p[0]===x[0]) pt++;
   if(p[1]===x[1]) pt++;
@@ -336,34 +372,46 @@ function ptClass(pt){ return pt===6?'pt6':pt>=4?'pt4':pt===3?'pt3':pt>=1?'pt1':'
 
 /* ---------- Stats ---------- */
 function renderStats(d){
-  document.getElementById('s-entries').textContent = d.total_entries;
-  document.getElementById('s-matches').textContent = d.matches_completed + '/' + d.total_matches;
   const pot = d.total_entries * ENTRY_FEE;
+  document.getElementById('s-pot').textContent = gbp(pot);
+  document.getElementById('s-pot-sub').textContent = d.total_entries + ' entries · closed';
+  document.getElementById('s-matches').textContent = d.matches_completed + '/' + d.total_matches;
   document.getElementById('s-first').textContent  = gbp(pot*0.35);
   document.getElementById('s-second').textContent = gbp(pot*0.15);
   document.getElementById('s-charity').textContent= gbp(pot*0.50);
   if(d.last_updated){
     const dt = new Date(d.last_updated);
-    document.getElementById('updated').textContent =
-      'Last updated: ' + dt.toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('updated').textContent = 'Last updated: ' + dt.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
   }
+}
+
+/* ---------- Movement arrow ---------- */
+function movementHTML(e){
+  if(e.previous_rank == null) return '<span class="mv new">NEW</span>';
+  const diff = e.previous_rank - e.rank;
+  if(diff > 0)  return `<span class="mv up">▲${diff}</span>`;
+  if(diff < 0)  return `<span class="mv down">▼${-diff}</span>`;
+  return '<span class="mv same">–</span>';
 }
 
 /* ---------- Leaderboard ---------- */
 function renderLeaderboard(filter){
   if(!LB) return;
+  const me = localStorage.getItem('wc-me') || '';
+  const hasResults = LB.matches_completed > 0;
   const f = (filter||'').toLowerCase();
   const rows = LB.leaderboard.filter(e => e.name.toLowerCase().includes(f));
   const winnerSet = !!LB.winner;
   let html = `<div style="overflow-x:auto"><table><thead><tr>
-    <th>#</th><th class="left">Name</th><th>Total</th>
+    <th>#</th>${hasResults?'<th class="hide-sm">+/–</th>':''}<th class="left">Name</th><th>Total</th>
     <th class="hide-sm">Match</th><th class="hide-sm">Winner</th>
     <th>Perfect</th><th class="hide-sm">Paid</th></tr></thead><tbody>`;
-  if(!rows.length){ html += `<tr><td colspan="7" class="empty">No players match “${filter}”.</td></tr>`; }
+  if(!rows.length){ html += `<tr><td colspan="8" class="empty">No players match “${esc(filter)}”.</td></tr>`; }
   rows.forEach(e => {
-    const tc = e.rank<=2 ? `top${e.rank}` : '';
-    html += `<tr class="${tc}">
+    const cls = [e.rank<=2?`top${e.rank}`:'', e.name===me?'me':''].join(' ').trim();
+    html += `<tr class="${cls}" data-name="${esc(e.name)}">
       <td><span class="rankbox">${e.rank}</span></td>
+      ${hasResults?`<td class="hide-sm">${movementHTML(e)}</td>`:''}
       <td class="left"><span class="pname">${esc(e.name)}</span>${winnerSet?` <span class="muted-col" style="font-size:.8rem">· ${esc(e.winner_pick||'')}</span>`:''}</td>
       <td><span class="pts-total tabular">${e.total_points}</span></td>
       <td class="hide-sm tabular muted-col">${e.match_points}</td>
@@ -373,32 +421,94 @@ function renderLeaderboard(filter){
     </tr>`;
   });
   html += `</tbody></table></div>`;
-  document.getElementById('lb-body').innerHTML = html;
+  const body = document.getElementById('lb-body');
+  body.innerHTML = html;
+  body.querySelectorAll('tr[data-name]').forEach(tr => tr.addEventListener('click', () => {
+    const n = tr.getAttribute('data-name');
+    const cur = localStorage.getItem('wc-me');
+    if(cur === n){ localStorage.removeItem('wc-me'); } else { localStorage.setItem('wc-me', n); toast('Highlighting ' + n); }
+    renderLeaderboard(document.getElementById('lb-search').value);
+  }));
+}
+
+/* ---------- Latest results + matchday MVP ---------- */
+function renderLatest(){
+  if(!PRED) return;
+  const done = PRED.matches.filter(m => m.result).sort((a,b)=> new Date(b.kickoff) - new Date(a.kickoff));
+  if(!done.length) return;
+  document.getElementById('latest-card').style.display = '';
+
+  document.getElementById('latest').innerHTML = done.slice(0,6).map(m =>
+    `<div class="lr-chip"><span>${esc(m.home)}</span> <b>${esc(m.result)}</b> <span>${esc(m.away)}</span></div>`
+  ).join('');
+
+  // Matchday MVP = best points among matches on the most recent completed date
+  const latestDate = done[0].kickoff.slice(0,10);
+  const dayMatches = PRED.matches.filter(m => m.result && m.kickoff && m.kickoff.slice(0,10)===latestDate);
+  const scores = PRED.entrants.map(en => {
+    let pts = 0; dayMatches.forEach(m => { const p = matchPoints(en.picks[m.id], m.result); if(p!=null) pts += p; });
+    return { name: en.name, pts };
+  }).sort((a,b)=> b.pts - a.pts);
+  const dLabel = new Date(latestDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  if(scores.length && scores[0].pts > 0){
+    const top = scores.filter(s => s.pts === scores[0].pts);
+    const names = top.slice(0,3).map(s=>s.name).join(', ') + (top.length>3?` +${top.length-3}`:'');
+    document.getElementById('mvp').innerHTML = `<div class="banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 0 1-12 0V4z"/></svg>
+      <div><div class="t">Top scorer · ${dLabel}</div><div class="n">${esc(names)} — ${scores[0].pts} pts</div></div>
+    </div>`;
+  }
+}
+
+/* ---------- Winner picks breakdown ---------- */
+function renderWinnerPicks(){
+  if(!PRED) return;
+  const counts = {};
+  PRED.entrants.forEach(e => { const w=(e.winner_pick||'').trim(); if(w) counts[w]=(counts[w]||0)+1; });
+  const arr = Object.entries(counts).sort((a,b)=> b[1]-a[1]);
+  if(!arr.length){ document.getElementById('winner-picks').innerHTML = '<div class="empty">No winner picks yet.</div>'; return; }
+  const max = arr[0][1];
+  document.getElementById('winner-picks').innerHTML = arr.map(([team,c]) => `
+    <div class="wp-row">
+      <span class="team">${esc(team)}</span>
+      <span class="wp-bar"><span style="width:${(c/max*100).toFixed(0)}%"></span></span>
+      <span class="cnt">${c}</span>
+    </div>`).join('');
 }
 
 /* ---------- My Picks ---------- */
+let picksInit = false;
 function fillPicksSelect(){
-  if(!PRED) return;
+  if(!PRED || picksInit) return;
+  picksInit = true;
   const sel = document.getElementById('picks-select');
-  PRED.entrants.forEach(e => {
-    const o = document.createElement('option'); o.value = e.name; o.textContent = e.name; sel.appendChild(o);
-  });
+  PRED.entrants.forEach(e => { const o=document.createElement('option'); o.value=e.name; o.textContent=e.name; sel.appendChild(o); });
+  const me = localStorage.getItem('wc-me');
+  if(me && PRED.entrants.some(e=>e.name===me)){ sel.value = me; renderPicks(me); }
   sel.addEventListener('change', () => renderPicks(sel.value));
+  document.getElementById('share-btn').addEventListener('click', () => sharePicks(sel.value));
+}
+function rankOf(name){ const e = LB && LB.leaderboard.find(x=>x.name===name); return e ? e : null; }
+function ordinal(n){ const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
+function sharePicks(name){
+  if(!name){ toast('Pick your name first'); return; }
+  const e = rankOf(name);
+  const where = e ? `${ordinal(e.rank)} with ${e.total_points} pts` : 'in the contest';
+  const text = `${name} is ${where} in the Durham Football Lodge World Cup 2026 Predictor! 🏆`;
+  const url = location.href.split('#')[0];
+  if(navigator.share){ navigator.share({title:'WC2026 Predictor', text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>toast('Copied to clipboard')).catch(()=>toast('Could not copy')); }
 }
 function renderPicks(name){
+  document.getElementById('share-btn').style.display = name ? 'inline-flex' : 'none';
   const box = document.getElementById('picks-content');
   if(!name){ box.innerHTML = `<div class="empty">Select your name above to view your predictions.</div>`; return; }
   const entrant = PRED.entrants.find(e => e.name === name);
   if(!entrant){ box.innerHTML = `<div class="empty">No predictions found.</div>`; return; }
-  const matchById = Object.fromEntries(PRED.matches.map(m => [m.id, m]));
 
   let total=0, perfect=0, scored=0;
-  PRED.matches.forEach(m => {
-    const pt = matchPoints(entrant.picks[m.id], m.result);
-    if(pt!==null){ total+=pt; scored++; if(pt===6) perfect++; }
-  });
-  const winnerHit = PRED.winner_actual && entrant.winner_pick &&
-    entrant.winner_pick.toLowerCase()===PRED.winner_actual.toLowerCase();
+  PRED.matches.forEach(m => { const pt = matchPoints(entrant.picks[m.id], m.result); if(pt!==null){ total+=pt; scored++; if(pt===6) perfect++; } });
+  const winnerHit = PRED.winner_actual && entrant.winner_pick && entrant.winner_pick.toLowerCase()===PRED.winner_actual.toLowerCase();
 
   let html = `<div class="picks-summary">
     <div class="summary-chip"><div class="l">Winner Pick</div><div class="v">${esc(entrant.winner_pick||'—')}${winnerHit?' ✓':''}</div></div>
@@ -406,16 +516,12 @@ function renderPicks(name){
     <div class="summary-chip"><div class="l">Perfect Scores</div><div class="v tabular">${perfect}</div></div>
     <div class="summary-chip"><div class="l">Matches Scored</div><div class="v tabular">${scored}/72</div></div>
   </div>`;
-
-  const groups = [...new Set(PRED.matches.map(m=>m.group))];
-  groups.forEach(g => {
+  [...new Set(PRED.matches.map(m=>m.group))].forEach(g => {
     html += `<div class="group-block"><div class="group-title">Group ${g}</div>`;
     PRED.matches.filter(m=>m.group===g).forEach(m => {
       const pick = entrant.picks[m.id] || '—';
       const pt = matchPoints(pick, m.result);
-      const badge = pt===null
-        ? `<span class="ptbadge ptpending">—</span>`
-        : `<span class="ptbadge ${ptClass(pt)}">${pt} pt${pt===1?'':'s'}</span>`;
+      const badge = pt===null ? `<span class="ptbadge ptpending">—</span>` : `<span class="ptbadge ${ptClass(pt)}">${pt} pt${pt===1?'':'s'}</span>`;
       html += `<div class="pick-row">
         <span class="fixture"><strong>${m.id}</strong> · ${esc(m.home)} v ${esc(m.away)}</span>
         <span class="pred">${esc(pick)}</span>
@@ -430,19 +536,17 @@ function renderPicks(name){
 
 /* ---------- Fixtures ---------- */
 function renderFixtures(){
-  if(!PRED){ return; }
+  if(!PRED) return;
   const box = document.getElementById('fixtures-content');
-  const groups = [...new Set(PRED.matches.map(m=>m.group))];
   let html = '';
-  groups.forEach(g => {
+  [...new Set(PRED.matches.map(m=>m.group))].forEach(g => {
     html += `<div class="group-title">Group ${g}</div>`;
     PRED.matches.filter(m=>m.group===g).forEach(m => {
-      const score = m.result
-        ? `<span class="fx-score">${esc(m.result)}</span>`
-        : `<span class="fx-score pending">vs</span>`;
+      const ko = m.kickoff ? new Date(m.kickoff).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+      const score = m.result ? `<span class="fx-score">${esc(m.result)}</span>` : `<span class="fx-score pending">vs</span>`;
       html += `<div class="fixture-card">
         <span class="fx-id">${m.id}</span>
-        <span>${esc(m.home)} v ${esc(m.away)}</span>
+        <span>${esc(m.home)} v ${esc(m.away)}<div class="fx-meta">${ko}</div></span>
         ${score}
       </div>`;
     });
@@ -450,7 +554,29 @@ function renderFixtures(){
   box.innerHTML = html;
 }
 
-function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+/* ---------- Countdown ---------- */
+let cdTimer = null;
+function startCountdown(){
+  if(!PRED) return;
+  const upcoming = PRED.matches.filter(m => m.kickoff && new Date(m.kickoff) > new Date())
+    .sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
+  if(!upcoming.length){ return; }
+  const next = upcoming[0];
+  document.getElementById('countdown-wrap').style.display = '';
+  document.getElementById('countdown-label').textContent =
+    `Next kick-off · ${next.id} ${next.home} v ${next.away}`;
+  const tick = () => {
+    let diff = new Date(next.kickoff) - new Date();
+    if(diff <= 0){ clearInterval(cdTimer); load(); return; }
+    const d=Math.floor(diff/MS.d); diff-=d*MS.d;
+    const h=Math.floor(diff/MS.h); diff-=h*MS.h;
+    const mn=Math.floor(diff/MS.m); diff-=mn*MS.m;
+    const s=Math.floor(diff/MS.s);
+    const box=(n,u)=>`<div class="cd-box"><div class="n tabular">${String(n).padStart(2,'0')}</div><div class="u">${u}</div></div>`;
+    document.getElementById('countdown').innerHTML = (d>0?box(d,'days'):'')+box(h,'hrs')+box(mn,'min')+box(s,'sec');
+  };
+  tick(); clearInterval(cdTimer); cdTimer = setInterval(tick, 1000);
+}
 
 /* ---------- Load ---------- */
 async function load(){
@@ -461,8 +587,11 @@ async function load(){
     ]);
     LB = await lbRes.json();
     renderStats(LB);
-    renderLeaderboard('');
-    if(prRes.ok){ PRED = await prRes.json(); fillPicksSelect(); renderFixtures(); }
+    renderLeaderboard(document.getElementById('lb-search').value);
+    if(prRes.ok){
+      PRED = await prRes.json();
+      fillPicksSelect(); renderFixtures(); renderLatest(); renderWinnerPicks(); startCountdown();
+    }
   } catch(err){
     console.error(err);
     document.getElementById('lb-body').innerHTML = `<div class="empty">Couldn’t load the leaderboard right now. Please try again shortly.</div>`;
