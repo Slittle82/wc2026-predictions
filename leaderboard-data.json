@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-11T18:00:10+00:00",
-  "total_entries": 27,
+  "last_updated": "2026-06-11T18:49:50+00:00",
+  "total_entries": 29,
   "matches_completed": 0,
   "total_matches": 72,
   "winner": null,
@@ -329,6 +329,30 @@
       "games_3pt": 0,
       "rank": 27,
       "previous_rank": 27
+    },
+    {
+      "name": "Stevo59",
+      "paid": true,
+      "total_points": 0,
+      "match_points": 0,
+      "winner_points": 0,
+      "winner_pick": "Argentina",
+      "games_6pt": 0,
+      "games_3pt": 0,
+      "rank": 28,
+      "previous_rank": null
+    },
+    {
+      "name": "Tony miller",
+      "paid": true,
+      "total_points": 0,
+      "match_points": 0,
+      "winner_points": 0,
+      "winner_pick": "Portugal",
+      "games_6pt": 0,
+      "games_3pt": 0,
+      "rank": 29,
+      "previous_rank": null
     }
   ]
 }
