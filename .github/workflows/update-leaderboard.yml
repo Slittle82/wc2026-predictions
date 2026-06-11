@@ -10,10 +10,16 @@ on:
       - 'calculate_scores.py'
       - '.github/workflows/update-leaderboard.yml'
   schedule:
-    # Daily safety-net rebuilds (UTC). 06:00 UTC = 07:00 BST (after overnight games),
-    # 21:00 UTC = 22:00 BST (after evening games). Keeps the board fresh even on
-    # days no score is entered manually.
+    # Rebuilds (UTC) timed around the WC2026 kickoff windows so the leaderboard and
+    # Crowd Predictions stay fresh (the latter is rebuilt from the live Google Sheet,
+    # so running closer to kickoff captures last-minute pick changes).
+    #   06:00 UTC = 07:00 BST  — after overnight games
+    #   15:00 UTC = 16:00 BST  — before the afternoon kickoffs
+    #   18:00 UTC = 19:00 BST  — before the early-evening kickoffs
+    #   21:00 UTC = 22:00 BST  — after evening games
     - cron: '0 6 * * *'
+    - cron: '0 15 * * *'
+    - cron: '0 18 * * *'
     - cron: '0 21 * * *'
   workflow_dispatch:
 

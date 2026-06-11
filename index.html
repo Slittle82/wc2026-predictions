@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>World Cup 2026 Predictor — Durham Football Lodge</title>
 <meta name="description" content="World Cup 2026 group-stage prediction contest for Durham Football Lodge — live leaderboard, your picks and fixtures." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="World Cup 2026 Predictor — Durham Football Lodge" />
+<meta property="og:description" content="Live leaderboard for the Durham Football Lodge World Cup 2026 prediction contest. 72 group-stage matches, one champion, 50% to charity." />
+<meta property="og:image" content="https://slittle82.github.io/wc2026-predictions/banner.PNG" />
+<meta property="og:url" content="https://slittle82.github.io/wc2026-predictions/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="World Cup 2026 Predictor — Durham Football Lodge" />
+<meta name="twitter:description" content="Live leaderboard, your picks and fixtures for the Durham Football Lodge World Cup 2026 prediction contest." />
+<meta name="twitter:image" content="https://slittle82.github.io/wc2026-predictions/banner.PNG" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -138,6 +147,9 @@
 
   /* ---------- Crowd predictions ---------- */
   .pred-day-title { font-family:'Barlow Condensed'; font-size: 1.15rem; font-weight: 700; color: var(--primary); margin: 6px 22px 0; padding-bottom: 5px; }
+  .pred-subhead { font-family:'Barlow Condensed'; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-size: .82rem; margin: 14px 22px 0; }
+  .live-badge { display: inline-flex; align-items: center; gap: 4px; font-family:'Barlow Condensed'; font-weight: 700; font-size: .7rem; letter-spacing: .04em; color: #fff; background: var(--danger); padding: 1px 7px; border-radius: 999px; vertical-align: middle; animation: live-pulse 1.6s ease-in-out infinite; }
+  @keyframes live-pulse { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
   .pred-match { padding: 14px 22px; border-bottom: 1px solid var(--muted-bg); }
   .pm-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   .pm-fixture { font-weight: 600; }
@@ -550,8 +562,28 @@ function renderStats(d){
   document.getElementById('s-charity').textContent= gbp(pot*0.50);
   if(d.last_updated){
     const dt = new Date(d.last_updated);
-    document.getElementById('updated').textContent = 'Last updated: ' + dt.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    const updated = 'Last updated: ' + dt.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('updated').textContent = updated + ' · ' + nextRefreshText();
   }
+}
+
+/* Auto-rebuild cron hours (UTC) from the GitHub Action schedule. */
+const REFRESH_HOURS_UTC = [6, 15, 18, 21];
+function nextRefreshText(){
+  const now = new Date();
+  const next = new Date(now);
+  next.setUTCMinutes(0, 0, 0);
+  let found = null;
+  for(let day = 0; day <= 1 && !found; day++){
+    for(const h of REFRESH_HOURS_UTC){
+      const cand = new Date(next);
+      cand.setUTCDate(now.getUTCDate() + day);
+      cand.setUTCHours(h);
+      if(cand > now){ found = cand; break; }
+    }
+  }
+  if(!found) return 'auto-refreshes a few times a day';
+  return 'next auto-refresh ' + found.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
 }
 
 /* ---------- Hero status (champion takeover) ---------- */
@@ -659,7 +691,7 @@ function renderToday(){
   if(!PRED) return;
   const now = Date.now();
   const upcoming = PRED.matches
-    .filter(m => { if(!m.kickoff) return false; const t = new Date(m.kickoff).getTime(); return t >= now && t <= now + MS.d; })
+    .filter(m => { if(!m.kickoff) return false; const t = new Date(m.kickoff).getTime(); return isLive(m) || (t >= now && t <= now + MS.d); })
     .sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
   const card = document.getElementById('today-card');
   if(!upcoming.length){ card.style.display = 'none'; return; }
@@ -668,7 +700,8 @@ function renderToday(){
     const ko = new Date(m.kickoff);
     const sameDay = ko.toDateString() === new Date().toDateString();
     const t = ko.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + (sameDay ? '' : ' ' + ko.toLocaleDateString('en-GB',{weekday:'short'}));
-    return `<div class="lr-chip"><span class="fx-id">${m.id}</span> <span>${esc(m.home)}</span> <b class="muted-col" style="font-weight:500">${t}</b> <span>${esc(m.away)}</span></div>`;
+    const mid = isLive(m) ? liveBadge(m) : `<b class="muted-col" style="font-weight:500">${t}</b>`;
+    return `<div class="lr-chip"><span class="fx-id">${m.id}</span> <span>${esc(m.home)}</span> ${mid} <span>${esc(m.away)}</span></div>`;
   }).join('');
 }
 
@@ -759,63 +792,87 @@ function renderHighlights(){
   document.getElementById('highlights-content').innerHTML = html;
 }
 
-/* ---------- Crowd predictions (next games) ---------- */
+/* ---------- Live-match helper ---------- */
+const LIVE_WINDOW_MS = 2 * MS.h; // treat a match as "live" for ~2hrs after kickoff
+function isLive(m){
+  if(!m.kickoff || m.result) return false;
+  const ko = new Date(m.kickoff).getTime(), now = Date.now();
+  return now >= ko && now <= ko + LIVE_WINDOW_MS;
+}
+const liveBadge = m => isLive(m) ? '<span class="live-badge">● LIVE</span>' : '';
+
+/* ---------- Crowd predictions (next 24 hours) ---------- */
+function predMatchHTML(m){
+  const tally = {}; let leanH=0, leanD=0, leanA=0, votes=0;
+  PRED.entrants.forEach(en => {
+    const pick = (en.picks[m.id]||'').trim();
+    const ps = parseScore(pick);
+    if(!ps) return;
+    votes++;
+    tally[pick] = (tally[pick]||0) + 1;
+    const r = res(ps[0], ps[1]); if(r>0) leanH++; else if(r<0) leanA++; else leanD++;
+  });
+  const sorted = Object.entries(tally).sort((a,b)=> b[1]-a[1]);
+  const ko = m.kickoff ? new Date(m.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZoneName:'short'}) : '';
+  const pct = n => votes ? Math.round(n/votes*100) : 0;
+  const top = sorted[0];
+  const alts = sorted.slice(1,4).map(([s,c])=>`<b>${esc(s)}</b> (${c})`).join(' · ');
+  let html = `<div class="pred-match">
+    <div class="pm-top">
+      <span class="pm-fixture"><span class="pm-id">${m.id}</span>${esc(m.home)} v ${esc(m.away)} ${liveBadge(m)}</span>
+      <span class="pm-time">${ko}${m.result?` · result ${esc(m.result)}`:''}</span>
+    </div>`;
+  if(top){
+    html += `<div class="pm-crowd"><span class="cp">${esc(top[0])}</span><span class="cnt">crowd favourite · ${top[1]} of ${votes} picks</span></div>
+    <div class="pm-lean"><span class="h" style="width:${pct(leanH)}%"></span><span class="d" style="width:${pct(leanD)}%"></span><span class="a" style="width:${pct(leanA)}%"></span></div>
+    <div class="pm-legend">
+      <i><span class="sw" style="background:var(--primary)"></span>${esc(m.home)} win ${pct(leanH)}%</i>
+      <i><span class="sw" style="background:var(--silver)"></span>Draw ${pct(leanD)}%</i>
+      <i><span class="sw" style="background:var(--secondary)"></span>${esc(m.away)} win ${pct(leanA)}%</i>
+    </div>
+    ${alts?`<div class="pm-alts">Also backed: ${alts}</div>`:''}`;
+  } else {
+    html += `<div class="pm-alts">No predictions recorded for this match.</div>`;
+  }
+  html += `</div>`;
+  return html;
+}
 function renderPredictions(){
   if(!PRED) return;
-  const now = new Date();
-  const withKO = PRED.matches.filter(m => m.kickoff);
-  const upcoming = withKO.filter(m => new Date(m.kickoff) > now).sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
-  let dayMatches, title;
-  if(upcoming.length){
-    const day = upcoming[0].kickoff.slice(0,10);
-    dayMatches = upcoming.filter(m => m.kickoff.slice(0,10) === day);
-    const dl = new Date(day).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
-    title = `Next games · ${dl}`;
-  } else {
-    // tournament finished — show the final day's games
-    const last = [...withKO].sort((a,b)=> new Date(b.kickoff) - new Date(a.kickoff))[0];
-    const day = last ? last.kickoff.slice(0,10) : null;
-    dayMatches = day ? withKO.filter(m => m.kickoff.slice(0,10) === day) : [];
-    title = 'Latest games';
-  }
   document.getElementById('crowd-title').textContent = 'Crowd Predictions';
-
-  const total = PRED.entrants.length;
-  let html = `<div class="pred-day-title">${esc(title)}</div>`;
-  if(!dayMatches.length){ html += `<div class="empty">No upcoming games to show.</div>`; }
-  dayMatches.forEach(m => {
-    const tally = {}; let leanH=0, leanD=0, leanA=0, votes=0;
-    PRED.entrants.forEach(en => {
-      const pick = (en.picks[m.id]||'').trim();
-      const ps = parseScore(pick);
-      if(!ps) return;
-      votes++;
-      tally[pick] = (tally[pick]||0) + 1;
-      const r = res(ps[0], ps[1]); if(r>0) leanH++; else if(r<0) leanA++; else leanD++;
-    });
-    const sorted = Object.entries(tally).sort((a,b)=> b[1]-a[1]);
-    const ko = m.kickoff ? new Date(m.kickoff).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZoneName:'short'}) : '';
-    const pct = n => votes ? Math.round(n/votes*100) : 0;
-    const top = sorted[0];
-    const alts = sorted.slice(1,4).map(([s,c])=>`<b>${esc(s)}</b> (${c})`).join(' · ');
-    html += `<div class="pred-match">
-      <div class="pm-top">
-        <span class="pm-fixture"><span class="pm-id">${m.id}</span>${esc(m.home)} v ${esc(m.away)}</span>
-        <span class="pm-time">${ko}${m.result?` · result ${esc(m.result)}`:''}</span>
-      </div>`;
-    if(top){
-      html += `<div class="pm-crowd"><span class="cp">${esc(top[0])}</span><span class="cnt">crowd favourite · ${top[1]} of ${votes} picks</span></div>
-      <div class="pm-lean"><span class="h" style="width:${pct(leanH)}%"></span><span class="d" style="width:${pct(leanD)}%"></span><span class="a" style="width:${pct(leanA)}%"></span></div>
-      <div class="pm-legend">
-        <i><span class="sw" style="background:var(--primary)"></span>${esc(m.home)} win ${pct(leanH)}%</i>
-        <i><span class="sw" style="background:var(--silver)"></span>Draw ${pct(leanD)}%</i>
-        <i><span class="sw" style="background:var(--secondary)"></span>${esc(m.away)} win ${pct(leanA)}%</i>
-      </div>
-      ${alts?`<div class="pm-alts">Also backed: ${alts}</div>`:''}`;
+  const now = Date.now();
+  const withKO = PRED.matches.filter(m => m.kickoff);
+  // Rolling 24-hour window: live games + everything kicking off in the next 24hrs.
+  let window = withKO.filter(m => {
+    const ko = new Date(m.kickoff).getTime();
+    return isLive(m) || (ko >= now && ko <= now + MS.d);
+  }).sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
+  let title = 'Next 24 hours';
+  if(!window.length){
+    // nothing imminent — fall back to the next upcoming day's games, or the last day if finished
+    const future = withKO.filter(m => new Date(m.kickoff).getTime() > now).sort((a,b)=> new Date(a.kickoff) - new Date(b.kickoff));
+    if(future.length){
+      const day = future[0].kickoff.slice(0,10);
+      window = future.filter(m => m.kickoff.slice(0,10) === day);
+      title = 'Next games · ' + new Date(day).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
     } else {
-      html += `<div class="pm-alts">No predictions recorded for this match.</div>`;
+      const last = [...withKO].sort((a,b)=> new Date(b.kickoff) - new Date(a.kickoff))[0];
+      const day = last ? last.kickoff.slice(0,10) : null;
+      window = day ? withKO.filter(m => m.kickoff.slice(0,10) === day) : [];
+      title = 'Latest games';
     }
-    html += `</div>`;
+  }
+
+  let html = `<div class="pred-day-title">${esc(title)}</div>`;
+  if(!window.length){ html += `<div class="empty">No upcoming games to show.</div>`; }
+
+  // Group by calendar day so a multi-day 24hr window stays readable.
+  const byDay = {};
+  window.forEach(m => { const d = m.kickoff.slice(0,10); (byDay[d] = byDay[d] || []).push(m); });
+  Object.keys(byDay).sort().forEach(day => {
+    const dl = new Date(day).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    if(Object.keys(byDay).length > 1) html += `<div class="pred-subhead">${esc(dl)}</div>`;
+    byDay[day].forEach(m => { html += predMatchHTML(m); });
   });
   document.getElementById('pred-games').innerHTML = html;
 }
@@ -941,7 +998,7 @@ function renderFixtures(){
     html += `<div class="group-title">Group ${g}</div>`;
     PRED.matches.filter(m=>m.group===g).forEach(m => {
       const ko = m.kickoff ? new Date(m.kickoff).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZoneName:'short'}) : '';
-      const score = m.result ? `<span class="fx-score">${esc(m.result)}</span>` : `<span class="fx-score pending">vs</span>`;
+      const score = m.result ? `<span class="fx-score">${esc(m.result)}</span>` : (isLive(m) ? liveBadge(m) : `<span class="fx-score pending">vs</span>`);
       html += `<div class="fixture-card">
         <span class="fx-id">${m.id}</span>
         <span>${esc(m.home)} v ${esc(m.away)}<div class="fx-meta">${ko}</div></span>
