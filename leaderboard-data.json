@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-11T07:54:14+00:00",
+  "last_updated": "2026-06-11T08:58:45+00:00",
   "total_entries": 26,
   "matches_completed": 0,
   "total_matches": 72,
@@ -292,7 +292,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 24,
-      "previous_rank": null
+      "previous_rank": 24
     },
     {
       "name": "Phil Gibson",
@@ -304,7 +304,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 25,
-      "previous_rank": null
+      "previous_rank": 25
     },
     {
       "name": "Bangkok Beavers",
@@ -316,7 +316,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 26,
-      "previous_rank": null
+      "previous_rank": 26
     }
   ]
 }
