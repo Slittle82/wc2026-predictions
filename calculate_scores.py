@@ -93,12 +93,19 @@ KICKOFFS = {
 
 
 def load_previous_ranks() -> Dict[str, int]:
-    """Read the existing leaderboard output to capture each player's prior rank."""
+    """Read the existing leaderboard output to capture each player's prior rank.
+
+    Returns {} if no matches had been scored yet at that point - with 0 games
+    played, the "ranking" is an arbitrary tie-break order, so it shouldn't be
+    used as a baseline for movement arrows once the first results land.
+    """
     if not os.path.exists(LEADERBOARD_OUT):
         return {}
     try:
         with open(LEADERBOARD_OUT, encoding="utf-8") as fh:
             data = json.load(fh)
+        if not data.get("matches_completed"):
+            return {}
         return {e["name"]: e["rank"] for e in data.get("leaderboard", []) if "rank" in e}
     except (json.JSONDecodeError, KeyError, OSError):
         return {}
@@ -335,15 +342,18 @@ def build(rows: List[dict], results: dict) -> Tuple[dict, dict, List[dict]]:
 
     # Append today's rank snapshot to the rank-history (for the leaderboard
     # trend sparklines). One snapshot per calendar day (UTC); re-running the
-    # script on the same day overwrites that day's snapshot.
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # script on the same day overwrites that day's snapshot. Skip entirely
+    # until the first match has been scored - with 0 games played every
+    # entrant is tied, so a "trend" from that point would be meaningless.
     rank_history = load_rank_history()
-    snapshot = {"date": today, "ranks": {e["name"]: e["rank"] for e in leaderboard}}
-    if rank_history and rank_history[-1].get("date") == today:
-        rank_history[-1] = snapshot
-    else:
-        rank_history.append(snapshot)
-    rank_history = rank_history[-RANK_HISTORY_MAX:]
+    if leaderboard_data["matches_completed"] > 0:
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        snapshot = {"date": today, "ranks": {e["name"]: e["rank"] for e in leaderboard}}
+        if rank_history and rank_history[-1].get("date") == today:
+            rank_history[-1] = snapshot
+        else:
+            rank_history.append(snapshot)
+        rank_history = rank_history[-RANK_HISTORY_MAX:]
 
     return leaderboard_data, predictions_data, rank_history
 
