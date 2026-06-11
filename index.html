@@ -714,7 +714,7 @@ function renderLatest(){
   const dLabel = new Date(latestDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
   if(scores.length && scores[0].pts > 0){
     const top = scores.filter(s => s.pts === scores[0].pts);
-    const names = top.slice(0,3).map(s=>s.name).join(', ') + (top.length>3?` +${top.length-3}`:'');
+    const names = top.slice(0,3).map(s=>s.name).join(', ') + (top.length>3?` and ${top.length-3} other${top.length-3===1?'':'s'}`:'');
     document.getElementById('mvp').innerHTML = `<div class="banner">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 0 1-12 0V4z"/></svg>
       <div><div class="t">Top scorer · ${dLabel}</div><div class="n">${esc(names)} — ${scores[0].pts} pts</div></div>
@@ -754,7 +754,7 @@ function renderHighlights(){
     .sort((a,b) => b.diff - a.diff);
   if(movers.length && movers[0].diff > 0){
     const top = movers.filter(m => m.diff === movers[0].diff);
-    const names = top.slice(0,3).map(m=>esc(m.name)).join(', ') + (top.length>3?` +${top.length-3}`:'');
+    const names = top.slice(0,3).map(m=>esc(m.name)).join(', ') + (top.length>3?` and ${top.length-3} other${top.length-3===1?'':'s'}`:'');
     html += `<div class="hl-item"><span class="hl-icon">🚀</span><div><div class="hl-title">Biggest Climber</div><div class="hl-body">${names} jumped ${movers[0].diff} place${movers[0].diff===1?'':'s'}</div></div></div>`;
   }
 
