@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-11T18:49:50+00:00",
-  "total_entries": 29,
+  "last_updated": "2026-06-11T19:09:25+00:00",
+  "total_entries": 30,
   "matches_completed": 0,
   "total_matches": 72,
   "winner": null,
@@ -340,7 +340,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 28,
-      "previous_rank": null
+      "previous_rank": 28
     },
     {
       "name": "Tony miller",
@@ -352,6 +352,18 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 29,
+      "previous_rank": 29
+    },
+    {
+      "name": "Teagan",
+      "paid": true,
+      "total_points": 0,
+      "match_points": 0,
+      "winner_points": 0,
+      "winner_pick": "Spain",
+      "games_6pt": 0,
+      "games_3pt": 0,
+      "rank": 30,
       "previous_rank": null
     }
   ]
