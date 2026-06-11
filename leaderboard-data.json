@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-11T16:59:13+00:00",
+  "last_updated": "2026-06-11T18:00:10+00:00",
   "total_entries": 27,
   "matches_completed": 0,
   "total_matches": 72,
@@ -328,7 +328,7 @@
       "games_6pt": 0,
       "games_3pt": 0,
       "rank": 27,
-      "previous_rank": null
+      "previous_rank": 27
     }
   ]
 }
