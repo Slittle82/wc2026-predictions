@@ -91,6 +91,19 @@ KICKOFFS = {
     "L5": "2026-06-27T22:00:00+01:00", "L6": "2026-06-27T22:00:00+01:00",
 }
 
+# The Google Form/Sheet has used slightly different spellings for some teams
+# across questions (e.g. column headers vs the winner-pick dropdown). Normalise
+# them to a single canonical name so the group standings tables don't show the
+# same team twice under different spellings.
+TEAM_NAME_ALIASES = {
+    "bosnia and herzegovina": "Bosnia & Herzegovina",
+    "columbia": "Colombia",
+}
+
+
+def normalize_team(name: str) -> str:
+    return TEAM_NAME_ALIASES.get(name.strip().lower(), name.strip())
+
 
 def load_previous_ranks() -> Dict[str, int]:
     """Read the existing leaderboard output to capture each player's prior rank.
@@ -209,8 +222,8 @@ def load_results() -> dict:
         data = json.load(fh)
     return {
         "results": {k.upper(): v for k, v in (data.get("results") or {}).items() if v},
-        "winner": data.get("winner"),
-        "runner_up": data.get("runner_up"),
+        "winner": normalize_team(data["winner"]) if data.get("winner") else None,
+        "runner_up": normalize_team(data["runner_up"]) if data.get("runner_up") else None,
     }
 
 
@@ -242,7 +255,7 @@ def split_fixture(column_header: str) -> Tuple[str, str]:
     try:
         teams = column_header.split(":", 1)[1]
         home, away = teams.split(" vs ", 1)
-        return home.strip(), away.strip()
+        return normalize_team(home), normalize_team(away)
     except (IndexError, ValueError):
         return "", ""
 
@@ -280,7 +293,7 @@ def build(rows: List[dict], results: dict) -> Tuple[dict, dict, List[dict]]:
         if not name:
             continue
         payment = (row.get(payment_col, "") if payment_col else "").strip()
-        winner_pick = (row.get(winner_col, "") if winner_col else "").strip()
+        winner_pick = normalize_team(row.get(winner_col, "") if winner_col else "")
 
         match_points = perfect = correct_results = 0
         picks = {}
