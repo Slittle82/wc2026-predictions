@@ -1,11 +1,23 @@
 {
-  "last_updated": "2026-06-13T19:46:21+00:00",
+  "last_updated": "2026-06-13T21:06:27+00:00",
   "total_entries": 31,
-  "matches_completed": 4,
+  "matches_completed": 5,
   "total_matches": 72,
   "winner": null,
   "runner_up": null,
   "leaderboard": [
+    {
+      "name": "Jimmy Turnbull",
+      "paid": true,
+      "total_points": 18,
+      "match_points": 18,
+      "winner_points": 0,
+      "winner_pick": "Spain",
+      "games_6pt": 2,
+      "games_3pt": 0,
+      "rank": 1,
+      "previous_rank": 3
+    },
     {
       "name": "Phil Gibson",
       "paid": true,
@@ -15,7 +27,7 @@
       "winner_pick": "England",
       "games_6pt": 1,
       "games_3pt": 0,
-      "rank": 1,
+      "rank": 2,
       "previous_rank": 1
     },
     {
@@ -27,20 +39,20 @@
       "winner_pick": "France",
       "games_6pt": 2,
       "games_3pt": 0,
-      "rank": 2,
+      "rank": 3,
       "previous_rank": 2
     },
     {
-      "name": "Jimmy Turnbull",
+      "name": "Big Al",
       "paid": true,
       "total_points": 17,
       "match_points": 17,
       "winner_points": 0,
-      "winner_pick": "Spain",
+      "winner_pick": "Switzerland",
       "games_6pt": 2,
       "games_3pt": 0,
-      "rank": 3,
-      "previous_rank": 3
+      "rank": 4,
+      "previous_rank": 12
     },
     {
       "name": "Stevo59",
@@ -51,19 +63,19 @@
       "winner_pick": "Argentina",
       "games_6pt": 2,
       "games_3pt": 0,
-      "rank": 4,
+      "rank": 5,
       "previous_rank": 4
     },
     {
       "name": "Teagan",
       "paid": true,
-      "total_points": 16,
-      "match_points": 16,
+      "total_points": 17,
+      "match_points": 17,
       "winner_points": 0,
       "winner_pick": "Spain",
       "games_6pt": 2,
       "games_3pt": 0,
-      "rank": 5,
+      "rank": 6,
       "previous_rank": 5
     },
     {
@@ -75,8 +87,20 @@
       "winner_pick": "France",
       "games_6pt": 1,
       "games_3pt": 1,
-      "rank": 6,
+      "rank": 7,
       "previous_rank": 6
+    },
+    {
+      "name": "David Patterson",
+      "paid": true,
+      "total_points": 13,
+      "match_points": 13,
+      "winner_points": 0,
+      "winner_pick": "Argentina",
+      "games_6pt": 0,
+      "games_3pt": 1,
+      "rank": 8,
+      "previous_rank": 9
     },
     {
       "name": "Terry Davis",
@@ -87,8 +111,32 @@
       "winner_pick": "Brazil",
       "games_6pt": 2,
       "games_3pt": 0,
-      "rank": 7,
+      "rank": 9,
       "previous_rank": 7
+    },
+    {
+      "name": "Bill Hobson",
+      "paid": true,
+      "total_points": 12,
+      "match_points": 12,
+      "winner_points": 0,
+      "winner_pick": "France",
+      "games_6pt": 1,
+      "games_3pt": 2,
+      "rank": 10,
+      "previous_rank": 24
+    },
+    {
+      "name": "Stu666",
+      "paid": true,
+      "total_points": 12,
+      "match_points": 12,
+      "winner_points": 0,
+      "winner_pick": "Portugal",
+      "games_6pt": 1,
+      "games_3pt": 0,
+      "rank": 11,
+      "previous_rank": 11
     },
     {
       "name": "Ste Little",
@@ -99,20 +147,20 @@
       "winner_pick": "Argentina",
       "games_6pt": 1,
       "games_3pt": 0,
-      "rank": 8,
+      "rank": 12,
       "previous_rank": 8
     },
     {
-      "name": "David Patterson",
+      "name": "Quackerjack",
       "paid": true,
       "total_points": 12,
       "match_points": 12,
       "winner_points": 0,
-      "winner_pick": "Argentina",
+      "winner_pick": "Spain",
       "games_6pt": 0,
-      "games_3pt": 1,
-      "rank": 9,
-      "previous_rank": 9
+      "games_3pt": 2,
+      "rank": 13,
+      "previous_rank": 13
     },
     {
       "name": "Tony miller",
@@ -123,56 +171,44 @@
       "winner_pick": "Portugal",
       "games_6pt": 0,
       "games_3pt": 1,
-      "rank": 10,
+      "rank": 14,
       "previous_rank": 10
-    },
-    {
-      "name": "Stu666",
-      "paid": true,
-      "total_points": 11,
-      "match_points": 11,
-      "winner_points": 0,
-      "winner_pick": "Portugal",
-      "games_6pt": 1,
-      "games_3pt": 0,
-      "rank": 11,
-      "previous_rank": 11
-    },
-    {
-      "name": "Big Al",
-      "paid": true,
-      "total_points": 11,
-      "match_points": 11,
-      "winner_points": 0,
-      "winner_pick": "Switzerland",
-      "games_6pt": 1,
-      "games_3pt": 0,
-      "rank": 12,
-      "previous_rank": 12
-    },
-    {
-      "name": "Quackerjack",
-      "paid": true,
-      "total_points": 11,
-      "match_points": 11,
-      "winner_points": 0,
-      "winner_pick": "Spain",
-      "games_6pt": 0,
-      "games_3pt": 2,
-      "rank": 13,
-      "previous_rank": 13
     },
     {
       "name": "Dougs destroyers",
       "paid": true,
-      "total_points": 10,
-      "match_points": 10,
+      "total_points": 11,
+      "match_points": 11,
       "winner_points": 0,
       "winner_pick": "England",
       "games_6pt": 1,
       "games_3pt": 1,
-      "rank": 14,
+      "rank": 15,
       "previous_rank": 14
+    },
+    {
+      "name": "Andy jacomb",
+      "paid": true,
+      "total_points": 10,
+      "match_points": 10,
+      "winner_points": 0,
+      "winner_pick": "Netherlands",
+      "games_6pt": 1,
+      "games_3pt": 1,
+      "rank": 16,
+      "previous_rank": 16
+    },
+    {
+      "name": "Bangkok Beavers",
+      "paid": true,
+      "total_points": 10,
+      "match_points": 10,
+      "winner_points": 0,
+      "winner_pick": "France",
+      "games_6pt": 0,
+      "games_3pt": 1,
+      "rank": 17,
+      "previous_rank": 18
     },
     {
       "name": "Darren Mullers",
@@ -183,20 +219,8 @@
       "winner_pick": "England",
       "games_6pt": 0,
       "games_3pt": 0,
-      "rank": 15,
+      "rank": 18,
       "previous_rank": 15
-    },
-    {
-      "name": "Andy jacomb",
-      "paid": true,
-      "total_points": 9,
-      "match_points": 9,
-      "winner_points": 0,
-      "winner_pick": "Netherlands",
-      "games_6pt": 1,
-      "games_3pt": 1,
-      "rank": 16,
-      "previous_rank": 16
     },
     {
       "name": "michael s",
@@ -207,20 +231,8 @@
       "winner_pick": "France",
       "games_6pt": 0,
       "games_3pt": 1,
-      "rank": 17,
+      "rank": 19,
       "previous_rank": 17
-    },
-    {
-      "name": "Bangkok Beavers",
-      "paid": true,
-      "total_points": 9,
-      "match_points": 9,
-      "winner_points": 0,
-      "winner_pick": "France",
-      "games_6pt": 0,
-      "games_3pt": 1,
-      "rank": 18,
-      "previous_rank": 18
     },
     {
       "name": "Ivan Lowther",
@@ -231,7 +243,7 @@
       "winner_pick": "France",
       "games_6pt": 0,
       "games_3pt": 0,
-      "rank": 19,
+      "rank": 20,
       "previous_rank": 19
     },
     {
@@ -243,7 +255,7 @@
       "winner_pick": "England",
       "games_6pt": 0,
       "games_3pt": 0,
-      "rank": 20,
+      "rank": 21,
       "previous_rank": 20
     },
     {
@@ -255,7 +267,7 @@
       "winner_pick": "Netherlands",
       "games_6pt": 1,
       "games_3pt": 0,
-      "rank": 21,
+      "rank": 22,
       "previous_rank": 21
     },
     {
@@ -267,32 +279,32 @@
       "winner_pick": "France",
       "games_6pt": 0,
       "games_3pt": 0,
-      "rank": 22,
+      "rank": 23,
       "previous_rank": 22
     },
     {
       "name": "Cheesy Chips and Gravy FC",
       "paid": true,
-      "total_points": 7,
-      "match_points": 7,
+      "total_points": 8,
+      "match_points": 8,
       "winner_points": 0,
       "winner_pick": "France",
       "games_6pt": 0,
       "games_3pt": 0,
-      "rank": 23,
+      "rank": 24,
       "previous_rank": 23
     },
     {
-      "name": "Bill Hobson",
+      "name": "Mighty Ducks",
       "paid": true,
       "total_points": 6,
       "match_points": 6,
       "winner_points": 0,
-      "winner_pick": "France",
+      "winner_pick": "Spain",
       "games_6pt": 0,
-      "games_3pt": 2,
-      "rank": 24,
-      "previous_rank": 24
+      "games_3pt": 0,
+      "rank": 25,
+      "previous_rank": 26
     },
     {
       "name": "Crimson Prince",
@@ -303,20 +315,8 @@
       "winner_pick": "Brazil",
       "games_6pt": 0,
       "games_3pt": 1,
-      "rank": 25,
-      "previous_rank": 25
-    },
-    {
-      "name": "Mighty Ducks",
-      "paid": true,
-      "total_points": 5,
-      "match_points": 5,
-      "winner_points": 0,
-      "winner_pick": "Spain",
-      "games_6pt": 0,
-      "games_3pt": 0,
       "rank": 26,
-      "previous_rank": 26
+      "previous_rank": 25
     },
     {
       "name": "Darren Muldowney",
