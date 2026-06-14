@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-14T19:17:10+00:00",
+  "last_updated": "2026-06-14T19:47:16+00:00",
   "total_entries": 31,
   "matches_completed": 9,
   "total_matches": 72,
@@ -76,7 +76,7 @@
       "games_6pt": 2,
       "games_3pt": 0,
       "rank": 6,
-      "previous_rank": 7
+      "previous_rank": 6
     },
     {
       "name": "Phil Gibson",
@@ -88,7 +88,7 @@
       "games_6pt": 1,
       "games_3pt": 1,
       "rank": 7,
-      "previous_rank": 6
+      "previous_rank": 7
     },
     {
       "name": "Quackerjack",
@@ -244,7 +244,7 @@
       "games_6pt": 0,
       "games_3pt": 1,
       "rank": 20,
-      "previous_rank": 23
+      "previous_rank": 20
     },
     {
       "name": "Dougs destroyers",
@@ -256,7 +256,7 @@
       "games_6pt": 1,
       "games_3pt": 2,
       "rank": 21,
-      "previous_rank": 20
+      "previous_rank": 21
     },
     {
       "name": "michael s",
@@ -268,7 +268,7 @@
       "games_6pt": 0,
       "games_3pt": 3,
       "rank": 22,
-      "previous_rank": 21
+      "previous_rank": 22
     },
     {
       "name": "Chris Browne",
@@ -280,7 +280,7 @@
       "games_6pt": 0,
       "games_3pt": 2,
       "rank": 23,
-      "previous_rank": 22
+      "previous_rank": 23
     },
     {
       "name": "Inter Menan",
