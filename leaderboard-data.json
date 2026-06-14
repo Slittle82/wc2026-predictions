@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-14T06:21:21+00:00",
+  "last_updated": "2026-06-14T09:39:14+00:00",
   "total_entries": 31,
   "matches_completed": 8,
   "total_matches": 72,
@@ -88,7 +88,7 @@
       "games_6pt": 2,
       "games_3pt": 0,
       "rank": 7,
-      "previous_rank": 8
+      "previous_rank": 7
     },
     {
       "name": "Quackerjack",
@@ -100,7 +100,7 @@
       "games_6pt": 1,
       "games_3pt": 2,
       "rank": 8,
-      "previous_rank": 7
+      "previous_rank": 8
     },
     {
       "name": "Stu666",
