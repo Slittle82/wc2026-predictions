@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-14T22:11:03+00:00",
+  "last_updated": "2026-06-15T05:24:57+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -208,7 +208,7 @@
       "home": "Ivory Coast",
       "away": "Ecuador",
       "kickoff": "2026-06-15T00:00:00+01:00",
-      "result": null
+      "result": "1-0"
     },
     {
       "id": "E3",
@@ -256,7 +256,7 @@
       "home": "Sweden",
       "away": "Tunisia",
       "kickoff": "2026-06-15T03:00:00+01:00",
-      "result": null
+      "result": "5-1"
     },
     {
       "id": "F3",
