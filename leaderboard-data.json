@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-15T18:15:05+00:00",
+  "last_updated": "2026-06-15T18:59:25+00:00",
   "total_entries": 31,
   "matches_completed": 13,
   "total_matches": 72,
@@ -184,7 +184,7 @@
       "games_6pt": 1,
       "games_3pt": 1,
       "rank": 15,
-      "previous_rank": 16
+      "previous_rank": 15
     },
     {
       "name": "Mighty Ducks",
@@ -196,7 +196,7 @@
       "games_6pt": 0,
       "games_3pt": 2,
       "rank": 16,
-      "previous_rank": 17
+      "previous_rank": 16
     },
     {
       "name": "Bill Hobson",
@@ -208,7 +208,7 @@
       "games_6pt": 1,
       "games_3pt": 5,
       "rank": 17,
-      "previous_rank": 18
+      "previous_rank": 17
     },
     {
       "name": "Andy jacomb",
@@ -220,7 +220,7 @@
       "games_6pt": 1,
       "games_3pt": 3,
       "rank": 18,
-      "previous_rank": 15
+      "previous_rank": 18
     },
     {
       "name": "Dougs destroyers",
