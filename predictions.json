@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-15T12:21:36+00:00",
+  "last_updated": "2026-06-15T18:15:05+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -344,7 +344,7 @@
       "home": "Spain",
       "away": "Cape Verde",
       "kickoff": "2026-06-15T17:00:00+01:00",
-      "result": null
+      "result": "0-0"
     },
     {
       "id": "H2",
