@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-16T21:28:02+00:00",
+  "last_updated": "2026-06-16T22:53:27+00:00",
   "total_entries": 31,
   "matches_completed": 17,
   "total_matches": 72,
@@ -52,7 +52,7 @@
       "games_6pt": 3,
       "games_3pt": 0,
       "rank": 4,
-      "previous_rank": 7
+      "previous_rank": 4
     },
     {
       "name": "Tony miller",
@@ -64,7 +64,7 @@
       "games_6pt": 2,
       "games_3pt": 4,
       "rank": 5,
-      "previous_rank": 8
+      "previous_rank": 5
     },
     {
       "name": "Stevo59",
@@ -76,7 +76,7 @@
       "games_6pt": 2,
       "games_3pt": 5,
       "rank": 6,
-      "previous_rank": 5
+      "previous_rank": 6
     },
     {
       "name": "Jimmy Turnbull",
@@ -88,7 +88,7 @@
       "games_6pt": 2,
       "games_3pt": 4,
       "rank": 7,
-      "previous_rank": 6
+      "previous_rank": 7
     },
     {
       "name": "Big Al",
@@ -100,7 +100,7 @@
       "games_6pt": 2,
       "games_3pt": 2,
       "rank": 8,
-      "previous_rank": 4
+      "previous_rank": 8
     },
     {
       "name": "Phil Gibson",
@@ -112,7 +112,7 @@
       "games_6pt": 1,
       "games_3pt": 2,
       "rank": 9,
-      "previous_rank": 10
+      "previous_rank": 9
     },
     {
       "name": "Bill Hobson",
@@ -124,7 +124,7 @@
       "games_6pt": 1,
       "games_3pt": 8,
       "rank": 10,
-      "previous_rank": 13
+      "previous_rank": 10
     },
     {
       "name": "Ste Little",
@@ -136,7 +136,7 @@
       "games_6pt": 1,
       "games_3pt": 3,
       "rank": 11,
-      "previous_rank": 14
+      "previous_rank": 11
     },
     {
       "name": "Mighty Ducks",
@@ -148,7 +148,7 @@
       "games_6pt": 1,
       "games_3pt": 3,
       "rank": 12,
-      "previous_rank": 18
+      "previous_rank": 12
     },
     {
       "name": "David Patterson",
@@ -160,7 +160,7 @@
       "games_6pt": 0,
       "games_3pt": 4,
       "rank": 13,
-      "previous_rank": 16
+      "previous_rank": 13
     },
     {
       "name": "Andy jacomb",
@@ -172,7 +172,7 @@
       "games_6pt": 2,
       "games_3pt": 3,
       "rank": 14,
-      "previous_rank": 20
+      "previous_rank": 14
     },
     {
       "name": "Ivan Lowther",
@@ -184,7 +184,7 @@
       "games_6pt": 1,
       "games_3pt": 5,
       "rank": 15,
-      "previous_rank": 9
+      "previous_rank": 15
     },
     {
       "name": "Quackerjack",
@@ -196,7 +196,7 @@
       "games_6pt": 1,
       "games_3pt": 5,
       "rank": 16,
-      "previous_rank": 15
+      "previous_rank": 16
     },
     {
       "name": "Chris Browne",
@@ -208,7 +208,7 @@
       "games_6pt": 1,
       "games_3pt": 4,
       "rank": 17,
-      "previous_rank": 22
+      "previous_rank": 17
     },
     {
       "name": "Dougs destroyers",
@@ -220,7 +220,7 @@
       "games_6pt": 2,
       "games_3pt": 3,
       "rank": 18,
-      "previous_rank": 11
+      "previous_rank": 18
     },
     {
       "name": "Terry Davis",
@@ -232,7 +232,7 @@
       "games_6pt": 2,
       "games_3pt": 2,
       "rank": 19,
-      "previous_rank": 12
+      "previous_rank": 19
     },
     {
       "name": "Sam Little",
@@ -244,7 +244,7 @@
       "games_6pt": 1,
       "games_3pt": 1,
       "rank": 20,
-      "previous_rank": 19
+      "previous_rank": 20
     },
     {
       "name": "Darren Mullers",
@@ -256,7 +256,7 @@
       "games_6pt": 0,
       "games_3pt": 4,
       "rank": 21,
-      "previous_rank": 17
+      "previous_rank": 21
     },
     {
       "name": "Crimson Prince",
@@ -268,7 +268,7 @@
       "games_6pt": 0,
       "games_3pt": 6,
       "rank": 22,
-      "previous_rank": 21
+      "previous_rank": 22
     },
     {
       "name": "Bangkok Beavers",
@@ -280,7 +280,7 @@
       "games_6pt": 1,
       "games_3pt": 3,
       "rank": 23,
-      "previous_rank": 27
+      "previous_rank": 23
     },
     {
       "name": "Inter Menan",
@@ -292,7 +292,7 @@
       "games_6pt": 0,
       "games_3pt": 5,
       "rank": 24,
-      "previous_rank": 23
+      "previous_rank": 24
     },
     {
       "name": "Kev Carter",
@@ -316,7 +316,7 @@
       "games_6pt": 1,
       "games_3pt": 1,
       "rank": 26,
-      "previous_rank": 24
+      "previous_rank": 26
     },
     {
       "name": "Connor Elves",
@@ -328,7 +328,7 @@
       "games_6pt": 0,
       "games_3pt": 3,
       "rank": 27,
-      "previous_rank": 28
+      "previous_rank": 27
     },
     {
       "name": "michael s",
@@ -340,7 +340,7 @@
       "games_6pt": 0,
       "games_3pt": 4,
       "rank": 28,
-      "previous_rank": 26
+      "previous_rank": 28
     },
     {
       "name": "Matt Pearce",
