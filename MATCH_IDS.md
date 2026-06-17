@@ -100,10 +100,10 @@ RESULTS = {
 - **J6**: Algeria vs Austria — 28 June, 03:00 BST
 
 ### Group K (K1-K6)
-- **K1**: Portugal vs Uzbekistan — 17 June, 18:00 BST
-- **K2**: DR Congo vs Colombia — 18 June, 03:00 BST
-- **K3**: Portugal vs DR Congo — 23 June, 18:00 BST
-- **K4**: Uzbekistan vs Colombia — 24 June, 03:00 BST
+- **K1**: Portugal vs Uzbekistan — 23 June, 18:00 BST
+- **K2**: DR Congo vs Colombia — 24 June, 03:00 BST
+- **K3**: Portugal vs DR Congo — 17 June, 18:00 BST
+- **K4**: Uzbekistan vs Colombia — 18 June, 03:00 BST
 - **K5**: Colombia vs Portugal — 28 June, 00:30 BST
 - **K6**: Uzbekistan vs DR Congo — 28 June, 00:30 BST
 
