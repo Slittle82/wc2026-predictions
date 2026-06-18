@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-18T18:20:41+00:00",
+  "last_updated": "2026-06-18T20:34:18+00:00",
   "total_entries": 31,
   "matches_completed": 25,
   "total_matches": 72,
@@ -40,7 +40,7 @@
       "games_6pt": 3,
       "games_3pt": 9,
       "rank": 3,
-      "previous_rank": 5
+      "previous_rank": 3
     },
     {
       "name": "Jimmy Turnbull",
@@ -52,7 +52,7 @@
       "games_6pt": 3,
       "games_3pt": 5,
       "rank": 4,
-      "previous_rank": 6
+      "previous_rank": 4
     },
     {
       "name": "Teagan",
@@ -64,7 +64,7 @@
       "games_6pt": 3,
       "games_3pt": 4,
       "rank": 5,
-      "previous_rank": 3
+      "previous_rank": 5
     },
     {
       "name": "Inter Menan",
@@ -76,7 +76,7 @@
       "games_6pt": 1,
       "games_3pt": 6,
       "rank": 6,
-      "previous_rank": 15
+      "previous_rank": 6
     },
     {
       "name": "Chris Browne",
@@ -88,7 +88,7 @@
       "games_6pt": 3,
       "games_3pt": 6,
       "rank": 7,
-      "previous_rank": 4
+      "previous_rank": 7
     },
     {
       "name": "Crimson Prince",
@@ -100,7 +100,7 @@
       "games_6pt": 2,
       "games_3pt": 9,
       "rank": 8,
-      "previous_rank": 7
+      "previous_rank": 8
     },
     {
       "name": "Andy jacomb",
@@ -112,7 +112,7 @@
       "games_6pt": 3,
       "games_3pt": 6,
       "rank": 9,
-      "previous_rank": 8
+      "previous_rank": 9
     },
     {
       "name": "Quackerjack",
@@ -124,7 +124,7 @@
       "games_6pt": 2,
       "games_3pt": 9,
       "rank": 10,
-      "previous_rank": 9
+      "previous_rank": 10
     },
     {
       "name": "Stu666",
@@ -148,7 +148,7 @@
       "games_6pt": 0,
       "games_3pt": 5,
       "rank": 12,
-      "previous_rank": 10
+      "previous_rank": 12
     },
     {
       "name": "Kev Carter",
@@ -172,7 +172,7 @@
       "games_6pt": 2,
       "games_3pt": 6,
       "rank": 14,
-      "previous_rank": 12
+      "previous_rank": 14
     },
     {
       "name": "Bangkok Beavers",
@@ -184,7 +184,7 @@
       "games_6pt": 3,
       "games_3pt": 4,
       "rank": 15,
-      "previous_rank": 24
+      "previous_rank": 15
     },
     {
       "name": "michael s",
@@ -196,7 +196,7 @@
       "games_6pt": 2,
       "games_3pt": 8,
       "rank": 16,
-      "previous_rank": 25
+      "previous_rank": 16
     },
     {
       "name": "Stevo59",
@@ -208,7 +208,7 @@
       "games_6pt": 2,
       "games_3pt": 6,
       "rank": 17,
-      "previous_rank": 16
+      "previous_rank": 17
     },
     {
       "name": "Phil Gibson",
@@ -220,7 +220,7 @@
       "games_6pt": 1,
       "games_3pt": 5,
       "rank": 18,
-      "previous_rank": 14
+      "previous_rank": 18
     },
     {
       "name": "Bill Hobson",
@@ -232,7 +232,7 @@
       "games_6pt": 1,
       "games_3pt": 10,
       "rank": 19,
-      "previous_rank": 17
+      "previous_rank": 19
     },
     {
       "name": "Ivan Lowther",
@@ -256,7 +256,7 @@
       "games_6pt": 4,
       "games_3pt": 3,
       "rank": 21,
-      "previous_rank": 27
+      "previous_rank": 21
     },
     {
       "name": "Sam Little",
@@ -268,7 +268,7 @@
       "games_6pt": 1,
       "games_3pt": 3,
       "rank": 22,
-      "previous_rank": 19
+      "previous_rank": 22
     },
     {
       "name": "Ste Little",
@@ -280,7 +280,7 @@
       "games_6pt": 1,
       "games_3pt": 7,
       "rank": 23,
-      "previous_rank": 18
+      "previous_rank": 23
     },
     {
       "name": "Big Al",
@@ -292,7 +292,7 @@
       "games_6pt": 3,
       "games_3pt": 2,
       "rank": 24,
-      "previous_rank": 22
+      "previous_rank": 24
     },
     {
       "name": "Terry Davis",
@@ -304,7 +304,7 @@
       "games_6pt": 2,
       "games_3pt": 6,
       "rank": 25,
-      "previous_rank": 23
+      "previous_rank": 25
     },
     {
       "name": "Cheesy Chips and Gravy FC",
@@ -316,7 +316,7 @@
       "games_6pt": 2,
       "games_3pt": 4,
       "rank": 26,
-      "previous_rank": 21
+      "previous_rank": 26
     },
     {
       "name": "David Patterson",
@@ -328,7 +328,7 @@
       "games_6pt": 0,
       "games_3pt": 6,
       "rank": 27,
-      "previous_rank": 26
+      "previous_rank": 27
     },
     {
       "name": "Connor Elves",
