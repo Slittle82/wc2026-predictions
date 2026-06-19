@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-19T00:04:01+00:00",
+  "last_updated": "2026-06-19T07:24:00+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -32,7 +32,7 @@
       "home": "Mexico",
       "away": "South Korea",
       "kickoff": "2026-06-19T02:00:00+01:00",
-      "result": null
+      "result": "1-0"
     },
     {
       "id": "A5",
