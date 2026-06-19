@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-18T23:52:18+00:00",
+  "last_updated": "2026-06-19T00:04:01+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -80,7 +80,7 @@
       "home": "Canada",
       "away": "Qatar",
       "kickoff": "2026-06-18T23:00:00+01:00",
-      "result": null
+      "result": "6-0"
     },
     {
       "id": "B5",
