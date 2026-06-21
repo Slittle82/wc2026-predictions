@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-21T18:03:14+00:00",
+  "last_updated": "2026-06-21T19:54:10+00:00",
   "total_entries": 31,
   "matches_completed": 37,
   "total_matches": 72,
@@ -100,7 +100,7 @@
       "games_6pt": 4,
       "games_3pt": 7,
       "rank": 8,
-      "previous_rank": 9
+      "previous_rank": 8
     },
     {
       "name": "Chris Elves",
@@ -112,7 +112,7 @@
       "games_6pt": 4,
       "games_3pt": 13,
       "rank": 9,
-      "previous_rank": 8
+      "previous_rank": 9
     },
     {
       "name": "Kev Carter",
@@ -136,7 +136,7 @@
       "games_6pt": 3,
       "games_3pt": 7,
       "rank": 11,
-      "previous_rank": 12
+      "previous_rank": 11
     },
     {
       "name": "Cheesy Chips and Gravy FC",
@@ -148,7 +148,7 @@
       "games_6pt": 3,
       "games_3pt": 5,
       "rank": 12,
-      "previous_rank": 17
+      "previous_rank": 12
     },
     {
       "name": "Bill Hobson",
@@ -160,7 +160,7 @@
       "games_6pt": 3,
       "games_3pt": 13,
       "rank": 13,
-      "previous_rank": 11
+      "previous_rank": 13
     },
     {
       "name": "Ivan Lowther",
@@ -208,7 +208,7 @@
       "games_6pt": 3,
       "games_3pt": 6,
       "rank": 17,
-      "previous_rank": 13
+      "previous_rank": 17
     },
     {
       "name": "Darren Mullers",
@@ -244,7 +244,7 @@
       "games_6pt": 4,
       "games_3pt": 9,
       "rank": 20,
-      "previous_rank": 21
+      "previous_rank": 20
     },
     {
       "name": "Sam Little",
@@ -256,7 +256,7 @@
       "games_6pt": 1,
       "games_3pt": 7,
       "rank": 21,
-      "previous_rank": 20
+      "previous_rank": 21
     },
     {
       "name": "Connor Elves",
