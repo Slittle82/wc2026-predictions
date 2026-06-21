@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-20T22:08:44+00:00",
+  "last_updated": "2026-06-21T06:34:03+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -224,7 +224,7 @@
       "home": "Curacao",
       "away": "Ecuador",
       "kickoff": "2026-06-21T01:00:00+01:00",
-      "result": null
+      "result": "0-0"
     },
     {
       "id": "E5",
@@ -272,7 +272,7 @@
       "home": "Japan",
       "away": "Tunisia",
       "kickoff": "2026-06-21T05:00:00+01:00",
-      "result": null
+      "result": "4-0"
     },
     {
       "id": "F5",
