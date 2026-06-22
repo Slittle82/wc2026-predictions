@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-22T12:08:01+00:00",
+  "last_updated": "2026-06-22T12:10:06+00:00",
   "total_entries": 31,
   "matches_completed": 40,
   "total_matches": 72,
@@ -88,7 +88,7 @@
       "games_6pt": 4,
       "games_3pt": 7,
       "rank": 7,
-      "previous_rank": 8
+      "previous_rank": 7
     },
     {
       "name": "Kev Carter",
@@ -100,7 +100,7 @@
       "games_6pt": 4,
       "games_3pt": 9,
       "rank": 8,
-      "previous_rank": 10
+      "previous_rank": 8
     },
     {
       "name": "Cheesy Chips and Gravy FC",
@@ -112,7 +112,7 @@
       "games_6pt": 3,
       "games_3pt": 5,
       "rank": 9,
-      "previous_rank": 12
+      "previous_rank": 9
     },
     {
       "name": "Phil Gibson",
@@ -124,7 +124,7 @@
       "games_6pt": 1,
       "games_3pt": 8,
       "rank": 10,
-      "previous_rank": 7
+      "previous_rank": 10
     },
     {
       "name": "Chris Elves",
@@ -136,7 +136,7 @@
       "games_6pt": 4,
       "games_3pt": 13,
       "rank": 11,
-      "previous_rank": 9
+      "previous_rank": 11
     },
     {
       "name": "Inter Menan",
@@ -148,7 +148,7 @@
       "games_6pt": 1,
       "games_3pt": 8,
       "rank": 12,
-      "previous_rank": 15
+      "previous_rank": 12
     },
     {
       "name": "michael s",
@@ -160,7 +160,7 @@
       "games_6pt": 4,
       "games_3pt": 11,
       "rank": 13,
-      "previous_rank": 16
+      "previous_rank": 13
     },
     {
       "name": "Bill Hobson",
@@ -172,7 +172,7 @@
       "games_6pt": 3,
       "games_3pt": 14,
       "rank": 14,
-      "previous_rank": 13
+      "previous_rank": 14
     },
     {
       "name": "Stu666",
@@ -184,7 +184,7 @@
       "games_6pt": 3,
       "games_3pt": 6,
       "rank": 15,
-      "previous_rank": 17
+      "previous_rank": 15
     },
     {
       "name": "Ivan Lowther",
@@ -196,7 +196,7 @@
       "games_6pt": 2,
       "games_3pt": 13,
       "rank": 16,
-      "previous_rank": 14
+      "previous_rank": 16
     },
     {
       "name": "Teagan",
@@ -208,7 +208,7 @@
       "games_6pt": 3,
       "games_3pt": 7,
       "rank": 17,
-      "previous_rank": 11
+      "previous_rank": 17
     },
     {
       "name": "Ste Little",
@@ -220,7 +220,7 @@
       "games_6pt": 2,
       "games_3pt": 10,
       "rank": 18,
-      "previous_rank": 19
+      "previous_rank": 18
     },
     {
       "name": "Sam Little",
@@ -232,7 +232,7 @@
       "games_6pt": 1,
       "games_3pt": 9,
       "rank": 19,
-      "previous_rank": 21
+      "previous_rank": 19
     },
     {
       "name": "Darren Mullers",
@@ -244,7 +244,7 @@
       "games_6pt": 0,
       "games_3pt": 9,
       "rank": 20,
-      "previous_rank": 18
+      "previous_rank": 20
     },
     {
       "name": "Andy jacomb",
@@ -256,7 +256,7 @@
       "games_6pt": 4,
       "games_3pt": 10,
       "rank": 21,
-      "previous_rank": 20
+      "previous_rank": 21
     },
     {
       "name": "Connor Elves",
@@ -280,7 +280,7 @@
       "games_6pt": 5,
       "games_3pt": 6,
       "rank": 23,
-      "previous_rank": 26
+      "previous_rank": 23
     },
     {
       "name": "David Patterson",
@@ -316,7 +316,7 @@
       "games_6pt": 3,
       "games_3pt": 7,
       "rank": 26,
-      "previous_rank": 23
+      "previous_rank": 26
     },
     {
       "name": "Mighty Ducks",
@@ -328,7 +328,7 @@
       "games_6pt": 2,
       "games_3pt": 8,
       "rank": 27,
-      "previous_rank": 28
+      "previous_rank": 27
     },
     {
       "name": "McNabie",
@@ -340,7 +340,7 @@
       "games_6pt": 1,
       "games_3pt": 7,
       "rank": 28,
-      "previous_rank": 29
+      "previous_rank": 28
     },
     {
       "name": "Big Al",
@@ -352,7 +352,7 @@
       "games_6pt": 3,
       "games_3pt": 7,
       "rank": 29,
-      "previous_rank": 27
+      "previous_rank": 29
     },
     {
       "name": "Matt Pearce",
@@ -364,7 +364,7 @@
       "games_6pt": 2,
       "games_3pt": 4,
       "rank": 30,
-      "previous_rank": 31
+      "previous_rank": 30
     },
     {
       "name": "Darren Muldowney",
@@ -376,7 +376,7 @@
       "games_6pt": 2,
       "games_3pt": 12,
       "rank": 31,
-      "previous_rank": 30
+      "previous_rank": 31
     }
   ]
 }
