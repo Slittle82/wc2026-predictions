@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23T20:11:34+00:00",
+  "last_updated": "2026-06-23T20:15:20+00:00",
   "total_entries": 31,
   "matches_completed": 45,
   "total_matches": 72,
@@ -100,7 +100,7 @@
       "games_6pt": 4,
       "games_3pt": 8,
       "rank": 8,
-      "previous_rank": 10
+      "previous_rank": 8
     },
     {
       "name": "Phil Gibson",
@@ -112,7 +112,7 @@
       "games_6pt": 3,
       "games_3pt": 9,
       "rank": 9,
-      "previous_rank": 8
+      "previous_rank": 9
     },
     {
       "name": "Kev Carter",
@@ -124,7 +124,7 @@
       "games_6pt": 5,
       "games_3pt": 9,
       "rank": 10,
-      "previous_rank": 11
+      "previous_rank": 10
     },
     {
       "name": "Stu666",
@@ -136,7 +136,7 @@
       "games_6pt": 4,
       "games_3pt": 9,
       "rank": 11,
-      "previous_rank": 9
+      "previous_rank": 11
     },
     {
       "name": "Inter Menan",
@@ -172,7 +172,7 @@
       "games_6pt": 4,
       "games_3pt": 6,
       "rank": 14,
-      "previous_rank": 21
+      "previous_rank": 14
     },
     {
       "name": "Chris Elves",
@@ -196,7 +196,7 @@
       "games_6pt": 2,
       "games_3pt": 14,
       "rank": 16,
-      "previous_rank": 17
+      "previous_rank": 16
     },
     {
       "name": "Ste Little",
@@ -208,7 +208,7 @@
       "games_6pt": 2,
       "games_3pt": 10,
       "rank": 17,
-      "previous_rank": 18
+      "previous_rank": 17
     },
     {
       "name": "Bangkok Beavers",
@@ -220,7 +220,7 @@
       "games_6pt": 6,
       "games_3pt": 6,
       "rank": 18,
-      "previous_rank": 19
+      "previous_rank": 18
     },
     {
       "name": "Andy jacomb",
@@ -232,7 +232,7 @@
       "games_6pt": 5,
       "games_3pt": 11,
       "rank": 19,
-      "previous_rank": 16
+      "previous_rank": 19
     },
     {
       "name": "Connor Elves",
@@ -256,7 +256,7 @@
       "games_6pt": 1,
       "games_3pt": 9,
       "rank": 21,
-      "previous_rank": 22
+      "previous_rank": 21
     },
     {
       "name": "Sam Little",
@@ -268,7 +268,7 @@
       "games_6pt": 2,
       "games_3pt": 9,
       "rank": 22,
-      "previous_rank": 14
+      "previous_rank": 22
     },
     {
       "name": "Dougs destroyers",
