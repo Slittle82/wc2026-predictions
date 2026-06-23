@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-22T22:47:54+00:00",
+  "last_updated": "2026-06-23T06:04:30+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -408,7 +408,7 @@
       "home": "France",
       "away": "Iraq",
       "kickoff": "2026-06-22T22:00:00+01:00",
-      "result": null
+      "result": "3-0"
     },
     {
       "id": "I4",
@@ -416,7 +416,7 @@
       "home": "Senegal",
       "away": "Norway",
       "kickoff": "2026-06-23T01:00:00+01:00",
-      "result": null
+      "result": "2-3"
     },
     {
       "id": "I5",
@@ -456,7 +456,7 @@
       "home": "Argentina",
       "away": "Austria",
       "kickoff": "2026-06-22T18:00:00+01:00",
-      "result": null
+      "result": "2-0"
     },
     {
       "id": "J4",
@@ -464,7 +464,7 @@
       "home": "Algeria",
       "away": "Jordan",
       "kickoff": "2026-06-23T04:00:00+01:00",
-      "result": null
+      "result": "2-1"
     },
     {
       "id": "J5",
