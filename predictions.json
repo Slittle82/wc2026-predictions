@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-24T22:18:30+00:00",
+  "last_updated": "2026-06-25T00:46:44+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -136,7 +136,7 @@
       "home": "Scotland",
       "away": "Brazil",
       "kickoff": "2026-06-24T23:00:00+01:00",
-      "result": null
+      "result": "0-3"
     },
     {
       "id": "C6",
@@ -144,7 +144,7 @@
       "home": "Morocco",
       "away": "Haiti",
       "kickoff": "2026-06-24T23:00:00+01:00",
-      "result": null
+      "result": "4-2"
     },
     {
       "id": "D1",
