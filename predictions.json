@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-27T23:02:50+00:00",
+  "last_updated": "2026-06-28T06:05:40+00:00",
   "winner_actual": null,
   "matches": [
     {
@@ -472,7 +472,7 @@
       "home": "Jordan",
       "away": "Argentina",
       "kickoff": "2026-06-28T03:00:00+01:00",
-      "result": null
+      "result": "1-3"
     },
     {
       "id": "J6",
@@ -480,7 +480,7 @@
       "home": "Algeria",
       "away": "Austria",
       "kickoff": "2026-06-28T03:00:00+01:00",
-      "result": null
+      "result": "3-3"
     },
     {
       "id": "K1",
@@ -520,7 +520,7 @@
       "home": "Colombia",
       "away": "Portugal",
       "kickoff": "2026-06-28T00:30:00+01:00",
-      "result": null
+      "result": "0-0"
     },
     {
       "id": "K6",
@@ -528,7 +528,7 @@
       "home": "Uzbekistan",
       "away": "DR Congo",
       "kickoff": "2026-06-28T00:30:00+01:00",
-      "result": null
+      "result": "1-3"
     },
     {
       "id": "L1",
